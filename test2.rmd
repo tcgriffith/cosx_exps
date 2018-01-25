@@ -1,0 +1,32 @@
+---
+title: "Untitled"
+author: "tc"
+date: "2017年11月8日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+library(dplyr)
+temp <- tribble(
+  ~s, ~a_1, ~a_2, ~b_1, ~b_2,
+  1, 10, 100, 1000, 10000,
+  2, 20, 200, 2000, 20000)
+```
+
+```{r}
+library(tidyr)
+
+temp %>% 
+  tidyr::gather(key="key",value="value",2:ncol(temp)) %>%
+  mutate(keya=gsub("^([ab])_.*","\\1",key),t=gsub(".*(\\d).*","\\1",key)) %>%
+  select(s,keya,t,value) %>%
+  spread(key=keya,value=value)
+```
+
+

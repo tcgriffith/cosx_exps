@@ -1,0 +1,46 @@
+---
+title: "Presentation Ninja"
+subtitle: "⚔<br/>with xaringan"
+author: "Yihui Xie"
+date: "2016/12/12"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg)
+
+???
+
+Image credit: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Sharingan_triple.svg)
+
+---
+## aaa
+
+```{r echo =FALSE}
+data("mtcars")
+
+knitr::kable(mtcars[, 1:7], longtable=TRUE, booktabs=TRUE,format = "markdown")
+
+```
+
+---
+## pivot table
+
+```{r echo =FALSE,message=FALSE}
+library(rpivotTable)
+data(HairEyeColor)
+rpivotTable(data = HairEyeColor, rows = "Hair",cols="Eye", vals = "Freq", aggregatorName = "Sum", rendererName = "Table", width="600px", height="600px")
+
+```
+
+
+

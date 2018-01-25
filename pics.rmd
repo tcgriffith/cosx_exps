@@ -1,0 +1,50 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+data <- data.frame(
+  site = c("Pancrease","Liver","Pancrease","Liver"),
+  rank=c(24,23,25,24),
+  cr=c(6.4,12.1,8.9,12.7),
+  sex= c("female","female","male","male"),
+  stringsAsFactors = FALSE
+)
+```
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(grid)
+
+gg <- ggplot(data=data)+
+  geom_bar(data= data%>% filter(sex=="male"), aes(x=site,y=cr,fill=sex),stat="identity")+
+  geom_bar(data= data%>% filter(sex=="female"), aes(x=site,y=-cr,fill=sex),stat="identity")+
+  scale_y_continuous(breaks = c(-10,-5,0,5,10),labels=c("10","5","0","5","10"))+
+  theme(plot.margin = unit(c(3,1,1,1),"lines"))+
+  annotation_custom(grob = textGrob(label="female"),
+                    xmin=Inf,
+                    xmax=Inf,
+                    ymin=-10,
+                    ymax=-10)+
+    annotation_custom(grob = textGrob(label="male"),
+                    xmin=Inf,
+                    xmax=Inf,
+                    ymin=10,
+                    ymax=10 )+
+  coord_flip()+
+  theme_classic()+
+  theme(axis.line  = element_blank(),legend.position = "none",axis.title = element_blank())
+
+gt <- ggplot_gtable(ggplot_build(gg))
+gt$layout$clip[gt$layout$name == "panel"] <- "off"
+grid.draw(gt)
+```
+
