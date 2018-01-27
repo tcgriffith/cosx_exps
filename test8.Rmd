@@ -1,0 +1,30 @@
+---
+title: "test8.Rmd"
+author: "tc"
+date: "January 28, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## ggplot2
+
+
+```{r}
+
+library(ggplot2)
+library(dplyr)
+library(ggrepel)
+uu <- data.frame(wz=rnorm(50,2),p=runif(50))
+
+
+ggplot(uu,aes(wz,p))+
+  geom_point()+
+  geom_point(data=uu %>% filter(wz >2),color="red")+
+  geom_hline(yintercept=(-log10(0.01)))+
+  theme_classic()+
+  geom_text_repel(data=uu %>% filter(wz >2),aes(label=sprintf("%0.2f", round(wz, digits = 2))))
+```
+
