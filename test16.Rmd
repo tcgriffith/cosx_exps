@@ -1,0 +1,75 @@
+---
+title: "Untitled"
+author: "TC"
+date: "April 11, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r}
+test = data.frame(val=rnorm(122, 0, 2))
+
+test$pn = ifelse(test$val > 0, "p", "n")
+
+head(test)
+```
+
+
+```{r}
+
+```
+
+
+
+
+```{r}
+
+file_path = "/home/tc/GIT/cosx_exps/test_csv"
+
+
+
+
+```
+
+```{r}
+
+clean_df <- function(df){
+## delete column 1
+  return(df[,-1])
+}
+
+
+clean_csv <- function(fpath) {
+  file_l <- list.files(path = fpath,
+                       pattern = "*csv",
+                       full.names = TRUE)
+  csv_l <- sapply(file_l, read.csv)
+  csv_l_cleaned <- sapply(csv_l, clean_df)
+
+  sapply(1:length(csv_l_cleaned),function(i)
+    write.csv(
+      csv_l_cleaned[[i]],
+      file = paste0(names(csv_l_cleaned[i]), "_clean.csv"),
+      row.names = FALSE
+    )
+  )
+    
+
+
+}
+
+clean_csv(file_path)
+
+```
+
+```{r}
+ clean_csv(file_path)
+list.files(file_path)
+```
+
