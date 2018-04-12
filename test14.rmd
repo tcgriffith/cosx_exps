@@ -1,0 +1,31 @@
+---
+title: "Untitled"
+author: "tc"
+date: "April 6, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+testdf <- data.frame(id = c(1,2,3,4,5), v = c("A", "A:B", "A:C", "A:B:C", "C:D"))
+```
+
+```{r}
+library(dplyr)
+library(tidyr)
+```
+
+
+```{r}
+
+library(tidyr)
+tidyr::separate_rows(testdf,v) %>%
+  mutate(val=1) %>%
+  spread(v,val,fill = 0)
+```
+

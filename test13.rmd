@@ -1,0 +1,54 @@
+---
+title: "Untitled"
+author: "tc"
+date: "March 16, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r}
+library(REmap)
+```
+
+
+```{r}
+data = data.frame(country = mapNames("world"),
+                    value = 5*sample(178)+200)
+ head(data)
+ out = remap(data,maptype = "world",color = 'skyblue')
+ plot(out)
+
+
+```
+
+```{r}
+library(REmap)
+```
+
+
+```{r}
+
+options(remap.js.web = T)
+
+set.seed(125)
+origin = rep("北京",10)
+destination = c('上海','广州','大连','南宁','南昌',
+                '拉萨','长春','包头','重庆','常州')
+dat = data.frame(origin,destination)
+
+ dat$value = sample(c(10,20,50,100,1000),nrow(dat),replace = T)
+
+out = remap(dat,title = "REmap实例数据",subtitle = "theme:Dark")
+plot(out)
+```
+
+```{r}
+dat
+```
+
