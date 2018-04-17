@@ -1,0 +1,36 @@
+---
+title: "test15"
+author: "TC"
+date: "April 17, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Q
+
+RT. 一个CSV格式的500*4000的数据集，因为工作人员存储失误，一些数值被错误的存成了带‘,’的，能用gsub把所有这样的数据都只保留逗号前的数字吗？需要循环遍历所有数据单元吗？
+
+library(data.table)
+X1<-fread(file.choose(),stringsAsFactors = T)
+gsub(patten = ".(,).", replacement = "", X1)
+replacement这里应该如何赋值呢？
+
+## data
+
+```{r}
+df <- data.frame(a= c("7,7","7,6","7.5"),b=c("72,7","7,6","7.5"),stringsAsFactors = F)
+```
+
+```{r}
+df <- data.frame(a= c("7,7","7,6","7.5"),b=c("72,7","7,6","7.5"),stringsAsFactors = F)
+df
+
+df2 <- apply(df,2,function(x) gsub(",\\d","",x)) 
+df2 <- as.data.frame(df2)
+
+df2
+```
+
