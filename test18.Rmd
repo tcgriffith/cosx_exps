@@ -1,0 +1,138 @@
+---
+title: "Untitled"
+author: "tc"
+date: "April 13, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+library(dplyr)
+```
+
+```{r results='asis'}
+f <- dplyr::tribble(
+  ~color, ~out,
+  "b", "scissor",
+  "r", "paper",
+  "r", "paper",
+  "b", "rock",
+  "g", "rock",
+  "b", "scissor",
+  "b", "paper",
+  "b", "scissor",
+  "b", "paper",
+  "b", "paper",
+  "g", "paper",
+  "g", "paper",
+  "b", "scissor",
+  "r", "paper",
+  "r", "rock",
+  "b", "paper",
+  "b", "scissor",
+  "r", "paper",
+  "b", "paper",
+  "g", "paper",
+  "b", "scissor",
+  "g", "paper",
+  "r", "paper",
+  "b", "scissor",
+  "r", "rock",
+  "b", "scissor",
+  "b", "scissor",
+  "g", "scissor",
+  "b", "rock",
+  
+  "r", "rock",
+  "b", "scissor",
+  "b", "scissor",
+  "b", "scissor",
+  "r", "rock",
+  "g", "rock",
+  "g", "paper",
+  "g", "paper",
+  "g", "paper",
+  "g", "rock",
+  
+  "b", "scissor",
+  "g", "paper",
+  "r", "scissor",
+  "b", "paper",
+  "b", "rock",
+  "b", "scissor",
+  "b", "paper",
+  "g", "scissor",
+  
+  "r", "scissor",
+  "g", "rock",
+  "g", "scissor",
+  "b", "scissor", 
+  "g", "rock",
+  "g", "scissor",
+  "b", "scissor",
+  ""
+  
+  
+)
+
+g <- dplyr::tribble(
+  ~color, ~out,
+  "b", "scissor",
+  "r", "rock",
+  "g", "paper"
+)
+
+
+
+
+table(f)
+
+tmp <- as.matrix(table(f))
+
+knitr::kable(tmp)
+
+p1 = c(1,0,0,
+       0,0,0,
+       1,0,1)
+p2=rep(1/length(tmp), length(tmp))
+
+chisq.test(tmp,p=p2,rescale.p = TRUE)
+
+chisq.test(tmp,p=p1,rescale.p = TRUE)
+
+```
+
+
+```{r}
+x = 44.39
+
+y = 46.00
+
+d = y-x
+
+c = 98.17
+z =(100 - c)/(d)
+
+print(z)
+```
+
+
+```{r}
+
+new_names <- c("迈皋桥",'草场门','山西路')
+
+for(j in filelist) {
+  data1 <- read.csv(j,
+                    header = F,
+                    sep = ",",
+                    fileEncoding = "UTF-8")+
+  colnames(data1) <- new_names
+  write.csv(data1, paste0('new_', j), row.names = F)
+}
+```
+

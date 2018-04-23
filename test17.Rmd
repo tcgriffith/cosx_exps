@@ -1,0 +1,61 @@
+---
+title: "Untitled"
+author: "tc"
+date: "April 16, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+ID <- 1:20
+conc <- round(rnorm(20, 100, 20), 1)
+gene <- c("GA", "AT", "AT", "GA", "GA", "AT", "TT", "TT", "GA", "GG", "GA", "AT", "GT", "TT", "GT", "GA", "GT", "AT", "GT", "GG")
+dt <- data.frame(ID, conc, gene)
+```
+
+```{r}
+boxplot(conc~as.factor(gene), data=dt, xaxt="n")
+#beeswarm::beeswarm(conc~as.factor(gene), data=dt, col="deeppink")
+
+axis(1, at=1:5, labels=c(paste0("GA","\n n=",length(dt[,2]=="GA")),
+paste0("AT","\n n=",length(dt[,2]=="AT")),
+paste0("TT","\n n=",length(dt[,2]=="TT")),
+paste0("GG","\n n=",length(dt[,2]=="GG")),
+paste0("GT","\n n=",length(dt[,2]=="GT"))))
+```
+
+```{r}
+library(ggplot2)
+
+gg <- ggplot(data=dt,aes(x=gene,y=conc))+
+  geom_boxplot()
+
+print(gg)
+
+```
+
+
+```{r}
+library(data.table)
+library(tidyr)
+text = "
+20140513	0	A	120	142	100
+20140513	0	B	76	66	58
+20140513	0	C	72	70	67
+20140513	0	D	190	234	150"
+
+
+
+df <- fread(text)
+names(df) <- c( "data","hour","type",	"a",	"b",	"c" )
+
+df2 <- df %>%
+  tidyr::gather(key="site",value="value", a,b,c)
+
+df2
+```
+
