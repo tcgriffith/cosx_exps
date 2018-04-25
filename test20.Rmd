@@ -1,0 +1,32 @@
+---
+title: "test20"
+author: "tc"
+date: "April 25, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+x= rnorm(100)
+y1= rnorm(100)
+y2=rnorm(100)
+
+data1 <- data.frame(x=x, y=y1, lab="data1")
+data2 <- data.frame(x=x, y=y2, lab="data2")
+
+data3 <- rbind(data1,data2)
+
+gg <- ggplot(data = data3,aes(x=x,y=y,color=lab))+
+  geom_point()
+
+print(gg)
+```
+

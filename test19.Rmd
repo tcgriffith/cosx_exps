@@ -1,0 +1,25 @@
+---
+title: "Untitled"
+author: "tc"
+date: "April 13, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r}
+setwd('./testit/')
+filelist <- dir('.', '.csv')
+
+for(j in filelist) {
+  data1 <- read.csv(j,header=F)
+  newfile <- subset(data1,select=c(1,2,3,24,25,26,27,28,29,30,31,32,33,34,35,36))
+  write.csv(newfile, paste0('new_', j)) #另存为新文件
+}
+```
+
