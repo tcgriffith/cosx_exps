@@ -1,0 +1,39 @@
+---
+title: "Untitled"
+author: "tc"
+date: "April 27, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+## R Markdown
+
+- https://d.cosx.org/d/419950-r-csv/6
+
+```{r}
+
+## 在windows下为了正确显示中文，参考 https://stackoverflow.com/questions/17715956/why-do-some-unicode-characters-display-in-matrices-but-not-data-frames-in-r
+
+Sys.setlocale("LC_CTYPE", locale="Chinese")
+
+## readr 里的read_csv可正确读取中文
+
+library(readr)
+j="./tsv2/new_new_china_sites_20140513.csv"
+data1 <- readr::read_csv(j)
+
+data2 <- tidyr::gather(data1,key="site",value="value",4:ncol(data1))
+
+write.csv(data2,paste0(j,'new.csv'),col.names=T,row.names = F,fileEncoding = "UTF-8") 
+```
+
+
+```{r}
+head(data2)
+```
+
