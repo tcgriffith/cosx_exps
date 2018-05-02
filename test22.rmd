@@ -1,0 +1,53 @@
+---
+title: "Untitled"
+author: "TC"
+date: "May 2, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r}
+install.packages("forecast")
+library(forecast)
+data=c(8637.50,9160.00 ,9162.50 ,7850.00 ,8862.50 ,9175.00 ,9233.33 ,10050.00 ,12362.50 ,12637.50 ,15666.67 ,18566.67 ,24260.00 ,21887.50 ,13362.50 ,10825.00 ,8337.50 ,9050.00 ,8668.75 ,10833.33 ,12675.00 ,9700.00 ,8825.00 ,9675.00 ,10470.00,10346.75)
+DATA = ts(data,frequency = 12)
+auto.arima(DATA)
+plot(forecast(auto.arima(DATA),5))
+```
+
+
+```{r}
+library(tibble)
+
+tmp <- tibble::tribble(
+~x, ~y, ~yse,
+19.5,	1.289529412,	0.149148884,
+21.5,	1.531205882, 0.138532792,
+24.5, 1.347794118,	0.217123776,
+27.5,	1.256227109,	0.131585902,
+29.5, 0.902255194, 0.126190124
+)
+
+library(ggplot2)
+
+gg_scatter <- ggplot(data=tmp,aes(x=x,y=y))+
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=y-yse,ymax=y+yse))
+print(gg_scatter)
+
+gg_col <- ggplot(data=tmp,aes(x=x,y=y))+
+  geom_col()+
+  geom_errorbar(aes(ymin=y-yse,ymax=y+yse))
+
+
+
+print(gg_col)
+```
+
