@@ -1,0 +1,56 @@
+---
+title: "Untitled"
+author: "TC"
+date: "June 11, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r}
+library(data.table)
+library(dplyr)
+
+
+a= "
+id first last
+1 q e
+2 a b
+3 o e
+4 b a
+5 c h
+6 x x
+"
+
+
+tmp <- fread(a)
+
+
+
+
+tmp2 <- 
+  tmp %>%
+  filter(first != last) %>%
+  mutate(idx = ifelse(first > last, paste0(first,last),paste0(last,first))) %>%
+  filter(!duplicated(idx))
+
+tmp2
+
+
+```
+
+```{r}
+
+
+
+
+
+  
+```
+
+
