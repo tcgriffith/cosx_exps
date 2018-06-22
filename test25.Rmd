@@ -1,0 +1,28 @@
+---
+title: "Untitled"
+author: "TC"
+date: "June 22, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+https://d.cosx.org/d/420051-ggplot2
+
+
+```{r}
+library(egg)
+library(ggplot2)
+long.data = data.frame(variable = rnorm(100),value=rnorm(100))
+
+plot <- list()
+for (i in 1:6){
+  plot[[i]] <- ggplot(long.data, aes(x=long.data$variable, y=long.data$value)) + 
+    geom_line(aes(group=1)) + 
+    geom_point(size=2, shape=20) + 
+    theme_bw()
+}
+do.call(ggarrange ,plot)
+```

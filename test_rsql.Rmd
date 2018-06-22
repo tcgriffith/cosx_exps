@@ -1,0 +1,67 @@
+---
+title: "Untitled"
+author: "TC"
+date: "June 18, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(RSQLite)
+library(DBI)
+library(data.table)
+```
+
+
+```{r}
+con <- dbConnect(RSQLite::SQLite(),":memory:")
+dbListTables(con)
+```
+
+```{r}
+dbWriteTable(con,"mtcars",mtcars)
+
+```
+```{r}
+dbListTables(con)
+
+dbListFields(con,"mtcars")
+```
+
+```{r}
+dbReadTable(con,"mtcars")
+```
+
+
+```{r}
+library(sqldf)
+
+```
+
+```{r}
+db <- dbConnect(SQLite(), dbname= "test.sqlite")
+
+
+```
+
+```{r}
+updateit <- function(i){
+  dbWriteTable(db,name=paste0("testcsv1_",i),value = tmp,row.names =FALSE, header = TRUE)
+  
+}
+```
+
+
+```{r}
+tmp <- fread("./sample.csv")
+
+d <- 1:1000
+
+sapply(d, updateit)
+
+```
+
+```{r}
+dbListTables(db)
+```
+
