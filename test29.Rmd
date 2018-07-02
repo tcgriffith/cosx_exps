@@ -1,15 +1,9 @@
 ---
-title: "Presentation Ninja"
-subtitle: "⚔<br/>with xaringan"
-author: "Yihui Xie"
-date: "2016/12/12 (updated: `r Sys.Date()`)"
-output:
-  xaringan::moon_reader:
-    lib_dir: libs
-    nature:
-      highlightStyle: github
-      highlightLines: true
-      countIncrementalSlides: false
+title: "diff in rmd"
+author: "tc"
+date: "2018/07/02 (updated: `r Sys.Date()`)"
+output: html_document
+
 ---
 
 ```{r setup, include=FALSE}
