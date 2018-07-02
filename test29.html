@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Presentation Ninja</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Yihui Xie" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Presentation Ninja
+## ⚔<br/>with xaringan
+### Yihui Xie
+### 2016/12/12 (updated: 2018-07-02)
+
+---
+
+
+
+
+# diff
+
+
+&lt;style type='text/css'&gt;
+/* Structural CSS ------------------------------------------------------------*/
+/*
+ * TBD whether we want a more fully table like structure; some of the visual
+ * cues provided by the current set-up are useful (line wraps, etc.)
+ */
+
+DIV.diffobj_container PRE {
+  white-space: pre-wrap;
+  margin: 0;
+}
+DIV.diffobj_container DIV.row {
+  width: 100%;
+  font-family: monospace;
+  display: table;
+  table-layout: fixed;
+}
+DIV.diffobj_container DIV.line {
+  width: auto;
+  display: table-cell;
+  overflow: hidden;
+}
+DIV.diffobj_container DIV.line&gt;DIV {
+  width: 100%;
+  display: table;
+  table-layout: auto;
+}
+DIV.diffobj_container DIV.line.banner&gt;DIV {
+  display: table;
+  table-layout: auto; /* set to fixed in JS */
+}
+DIV.diffobj_container DIV.text {
+  display: table-cell;
+  width: 100%;
+}
+DIV.diffobj_container DIV.gutter {
+  display: table-cell;
+  padding: 0 0.2em;
+}
+DIV.diffobj_container DIV.gutter DIV {
+  display: table-cell;
+}
+#diffobj_content_meta DIV.diffobj_container DIV.row {
+  width: auto;
+}
+#diffobj_banner_meta DIV.diffobj_container DIV.line.banner&gt;DIV {
+  table-layout: auto;
+}
+#diffobj_outer {
+  overflow: hidden;
+}
+/* Summary -------------------------------------------------------------------*/ 
+
+DIV.diffobj_container DIV.summary DIV.map {
+  word-wrap: break-word;
+  padding-left: 1em;
+}
+DIV.diffobj_container DIV.summary DIV.detail {
+  padding-left: 1em;
+}
+
+/* Common elements -----------------------------------------------------------*/
+
+DIV.diffobj_container DIV.line.banner {
+  font-size: 1.2em;
+  font-weight: bold;
+  overflow: hidden;
+}
+/* truncate banners */
+DIV.diffobj_container DIV.line.banner DIV.text DIV{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;             /* need to compute and set in JS */
+}
+DIV.diffobj_container DIV.gutter,
+DIV.diffobj_container DIV.guide,
+DIV.diffobj_container DIV.fill,
+DIV.diffobj_container DIV.context_sep,
+DIV.diffobj_container SPAN.trim {
+  color: #999;
+}
+DIV.diffobj_container DIV.header {
+  font-size: 1.1em;
+}
+DIV.diffobj_container DIV.text&gt;DIV.match,
+DIV.diffobj_container DIV.text&gt;DIV.guide {
+  background-color: #ffffff;
+}
+DIV.diffobj_container DIV.text&gt;DIV.fill {
+  background-color: transparent;
+}
+DIV.diffobj_container DIV.text&gt;DIV {
+  padding-right: 3px;
+}
+DIV.diffobj_container DIV.text&gt;DIV {
+  border-left: 1px solid #888888;
+}
+DIV.diffobj_container DIV.line {
+  background-color: #eeeeee;
+}
+DIV.diffobj_container DIV.text&gt;DIV,
+DIV.diffobj_container DIV.header {
+  padding-left: 0.5em;
+}
+DIV.diffobj_container DIV.line&gt;DIV.match,
+DIV.diffobj_container DIV.line&gt;DIV.fill,
+DIV.diffobj_container DIV.line&gt;DIV.guide {
+  border-left: 1px solid #888888;
+}
+/* github inspired color scheme - default ------------------------------------*/
+
+DIV.diffobj_container.light.rgb SPAN.word.insert,
+DIV.diffobj_container.light.rgb DIV.line&gt;DIV.insert {
+  background-color: #a6f3a6;
+}
+DIV.diffobj_container.light.rgb SPAN.word.delete,
+DIV.diffobj_container.light.rgb DIV.line&gt;DIV.delete {
+  background-color: #f8c2c2;
+}
+DIV.diffobj_container.light.rgb DIV.text&gt;DIV.insert {
+  background-color: #efffef;
+}
+DIV.diffobj_container.light.rgb DIV.text&gt;DIV.insert,
+DIV.diffobj_container.light.rgb DIV.line&gt;DIV.insert {
+  border-left: 1px solid #33bb33;
+}
+DIV.diffobj_container.light.rgb DIV.text&gt;DIV.delete {
+  background-color: #ffefef;
+}
+DIV.diffobj_container.light.rgb DIV.text&gt;DIV.delete,
+DIV.diffobj_container.light.rgb DIV.line&gt;DIV.delete {
+  border-left: 1px solid #cc6666;
+}
+DIV.diffobj_container.light.rgb DIV.header {
+  background-color: #e0e6fa;
+  border-left: 1px solid #9894b6;
+}
+/* Yellow Blue variation -----------------------------------------------------*/
+
+DIV.diffobj_container.light.yb SPAN.word.insert,
+DIV.diffobj_container.light.yb DIV.line&gt;DIV.insert {
+  background-color: #c0cfff;
+}
+DIV.diffobj_container.light.yb SPAN.word.delete,
+DIV.diffobj_container.light.yb DIV.line&gt;DIV.delete {
+  background-color: #e7e780;
+}
+DIV.diffobj_container.light.yb DIV.text&gt;DIV.insert {
+  background-color: #efefff;
+}
+DIV.diffobj_container.light.yb DIV.text&gt;DIV.insert,
+DIV.diffobj_container.light.yb DIV.line&gt;DIV.insert {
+  border-left: 1px solid #3333bb;
+}
+DIV.diffobj_container.light.yb DIV.text&gt;DIV.delete {
+  background-color: #fefee5;
+}
+DIV.diffobj_container.light.yb DIV.text&gt;DIV.delete,
+DIV.diffobj_container.light.yb DIV.line&gt;DIV.delete {
+  border-left: 1px solid #aaaa55;
+}
+DIV.diffobj_container.light.yb DIV.header {
+  background-color: #afafaf;
+  border-left: 1px solid #e3e3e3;
+  color: #e9e9e9;
+}
+DIV.diffobj_container.light.yb DIV.line {
+  background-color: #eeeeee;
+}
+&lt;/style&gt;
+
+&lt;div class='diffobj_container light yb'&gt;&lt;pre&gt;&lt;div class='row'&gt;&lt;div class='line banner'&gt;&lt;div class='delete'&gt;&lt;div class='gutter'&gt;&lt;div class='delete'&gt;&amp;lt;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='delete'&gt;&lt;span class='word delete'&gt;a&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='line banner'&gt;&lt;div class='insert'&gt;&lt;div class='gutter'&gt;&lt;div class='insert'&gt;&amp;gt;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='insert'&gt;&lt;span class='word insert'&gt;b&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='row'&gt;&lt;div class='line'&gt;&lt;div class='header'&gt;@@ 17,6 @@&lt;/div&gt;&lt;/div&gt;&lt;div class='line'&gt;&lt;div class='header'&gt;@@ 17,7 @@&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='row'&gt;&lt;div class='line'&gt;&lt;div class='guide'&gt;&lt;div class='gutter'&gt;&lt;div class='guide'&gt;~&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='guide'&gt;&lt;span class='trim'&gt;&lt;/span&gt;      [,1] [,2]&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='line'&gt;&lt;div class='guide'&gt;&lt;div class='gutter'&gt;&lt;div class='guide'&gt;~&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='guide'&gt;&lt;span class='trim'&gt;&lt;/span&gt;      [,1] [,2]&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='row'&gt;&lt;div class='line'&gt;&lt;div class='match'&gt;&lt;div class='gutter'&gt;&lt;div class='match'&gt;&amp;nbsp;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='match'&gt;&lt;span class='trim'&gt;[16,] &lt;/span&gt;  16   66&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='line'&gt;&lt;div class='match'&gt;&lt;div class='gutter'&gt;&lt;div class='match'&gt;&amp;nbsp;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='match'&gt;&lt;span class='trim'&gt;[16,] &lt;/span&gt;  16   66&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='row'&gt;&lt;div class='line'&gt;&lt;div class='match'&gt;&lt;div class='gutter'&gt;&lt;div class='match'&gt;&amp;nbsp;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='match'&gt;&lt;span class='trim'&gt;[17,] &lt;/span&gt;  17   67&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='line'&gt;&lt;div class='match'&gt;&lt;div class='gutter'&gt;&lt;div class='match'&gt;&amp;nbsp;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='match'&gt;&lt;span class='trim'&gt;[17,] &lt;/span&gt;  17   67&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='row'&gt;&lt;div class='line'&gt;&lt;div class='delete'&gt;&lt;div class='gutter'&gt;&lt;div class='delete'&gt;&amp;lt;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='delete'&gt;&lt;span class='trim'&gt;[18,] &lt;/span&gt;  &lt;span class='word delete'&gt;18&lt;/span&gt;   68&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='line'&gt;&lt;div class='insert'&gt;&lt;div class='gutter'&gt;&lt;div class='insert'&gt;&amp;gt;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='insert'&gt;&lt;span class='trim'&gt;[18,] &lt;/span&gt; &lt;span class='word insert'&gt;999&lt;/span&gt;   68&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='row'&gt;&lt;div class='line'&gt;&lt;div class='match'&gt;&lt;div class='gutter'&gt;&lt;div class='match'&gt;&amp;nbsp;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='match'&gt;&lt;span class='trim'&gt;[19,] &lt;/span&gt;  19   69&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='line'&gt;&lt;div class='match'&gt;&lt;div class='gutter'&gt;&lt;div class='match'&gt;&amp;nbsp;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='match'&gt;&lt;span class='trim'&gt;[19,] &lt;/span&gt;  19   69&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='row'&gt;&lt;div class='line'&gt;&lt;div class='fill'&gt;&lt;div class='gutter'&gt;&lt;div class='fill'&gt;~&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='fill'&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='line'&gt;&lt;div class='insert'&gt;&lt;div class='gutter'&gt;&lt;div class='insert'&gt;&amp;gt;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='insert'&gt;&lt;span class='trim'&gt;[20,] &lt;/span&gt;  &lt;span class='word insert'&gt;20&lt;/span&gt;   &lt;span class='word insert'&gt;70&lt;/span&gt;&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='row'&gt;&lt;div class='line'&gt;&lt;div class='match'&gt;&lt;div class='gutter'&gt;&lt;div class='match'&gt;&amp;nbsp;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='match'&gt;&lt;span class='trim'&gt;[20,] &lt;/span&gt;  21   71&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='line'&gt;&lt;div class='match'&gt;&lt;div class='gutter'&gt;&lt;div class='match'&gt;&amp;nbsp;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='match'&gt;&lt;span class='trim'&gt;[21,] &lt;/span&gt;  21   71&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='row'&gt;&lt;div class='line'&gt;&lt;div class='match'&gt;&lt;div class='gutter'&gt;&lt;div class='match'&gt;&amp;nbsp;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='match'&gt;&lt;span class='trim'&gt;[21,] &lt;/span&gt;  22   72&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='line'&gt;&lt;div class='match'&gt;&lt;div class='gutter'&gt;&lt;div class='match'&gt;&amp;nbsp;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='match'&gt;&lt;span class='trim'&gt;[22,] &lt;/span&gt;  22   72&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='row'&gt;&lt;div class='line'&gt;&lt;div class='header'&gt;@@ 42,6 @@&lt;/div&gt;&lt;/div&gt;&lt;div class='line'&gt;&lt;div class='header'&gt;@@ 43,5 @@&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='row'&gt;&lt;div class='line'&gt;&lt;div class='match'&gt;&lt;div class='gutter'&gt;&lt;div class='match'&gt;&amp;nbsp;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='match'&gt;&lt;span class='trim'&gt;[41,] &lt;/span&gt;  42   92&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='line'&gt;&lt;div class='match'&gt;&lt;div class='gutter'&gt;&lt;div class='match'&gt;&amp;nbsp;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='match'&gt;&lt;span class='trim'&gt;[42,] &lt;/span&gt;  42   92&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='row'&gt;&lt;div class='line'&gt;&lt;div class='match'&gt;&lt;div class='gutter'&gt;&lt;div class='match'&gt;&amp;nbsp;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='match'&gt;&lt;span class='trim'&gt;[42,] &lt;/span&gt;  43   93&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='line'&gt;&lt;div class='match'&gt;&lt;div class='gutter'&gt;&lt;div class='match'&gt;&amp;nbsp;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='match'&gt;&lt;span class='trim'&gt;[43,] &lt;/span&gt;  43   93&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='row'&gt;&lt;div class='line'&gt;&lt;div class='delete'&gt;&lt;div class='gutter'&gt;&lt;div class='delete'&gt;&amp;lt;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='delete'&gt;&lt;span class='trim'&gt;[43,] &lt;/span&gt;  &lt;span class='word delete'&gt;44&lt;/span&gt;   94&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='line'&gt;&lt;div class='insert'&gt;&lt;div class='gutter'&gt;&lt;div class='insert'&gt;&amp;gt;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='insert'&gt;&lt;span class='trim'&gt;[44,] &lt;/span&gt; &lt;span class='word insert'&gt;999&lt;/span&gt;   94&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='row'&gt;&lt;div class='line'&gt;&lt;div class='delete'&gt;&lt;div class='gutter'&gt;&lt;div class='delete'&gt;&amp;lt;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='delete'&gt;&lt;span class='trim'&gt;[44,] &lt;/span&gt;  &lt;span class='word delete'&gt;45&lt;/span&gt;   &lt;span class='word delete'&gt;95&lt;/span&gt;&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='line'&gt;&lt;div class='fill'&gt;&lt;div class='gutter'&gt;&lt;div class='fill'&gt;~&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='fill'&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='row'&gt;&lt;div class='line'&gt;&lt;div class='match'&gt;&lt;div class='gutter'&gt;&lt;div class='match'&gt;&amp;nbsp;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='match'&gt;&lt;span class='trim'&gt;[45,] &lt;/span&gt;  46   96&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='line'&gt;&lt;div class='match'&gt;&lt;div class='gutter'&gt;&lt;div class='match'&gt;&amp;nbsp;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='match'&gt;&lt;span class='trim'&gt;[45,] &lt;/span&gt;  46   96&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='row'&gt;&lt;div class='line'&gt;&lt;div class='match'&gt;&lt;div class='gutter'&gt;&lt;div class='match'&gt;&amp;nbsp;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='match'&gt;&lt;span class='trim'&gt;[46,] &lt;/span&gt;  47   97&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='line'&gt;&lt;div class='match'&gt;&lt;div class='gutter'&gt;&lt;div class='match'&gt;&amp;nbsp;&lt;/div&gt;&lt;div class='pad'&gt; &lt;/div&gt;&lt;/div&gt;&lt;div class='text'&gt;&lt;div class='match'&gt;&lt;span class='trim'&gt;[46,] &lt;/span&gt;  47   97&lt;span class='trim'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
