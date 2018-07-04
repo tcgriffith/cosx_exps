@@ -9,11 +9,11 @@ output: html_document
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 
-options(
-  digits=2, diffobj.pager="off", crayon.enabled=TRUE,
-  diffobj.format="html", diffobj.disp.width=120,
-  diffobj.ignore.white.space=TRUE
-)
+# options(
+#   digits=2, diffobj.pager="off", crayon.enabled=TRUE,
+#   diffobj.format="html", diffobj.disp.width=120,
+#   diffobj.ignore.white.space=TRUE
+# )
 ```
 
 # diff
@@ -198,6 +198,6 @@ a <- a[-20,]
 b <- b[-45,]
 b[c(18, 44)] <- 999
 
-diffPrint(target=a, current=b)
+diffPrint(target=a, current=b, format = "html")
 ```
 

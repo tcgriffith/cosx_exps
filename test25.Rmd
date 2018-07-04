@@ -15,14 +15,73 @@ https://d.cosx.org/d/420051-ggplot2
 ```{r}
 library(egg)
 library(ggplot2)
-long.data = data.frame(variable = rnorm(100),value=rnorm(100))
 
-plot <- list()
+data <- lapply(1:6,function(x) data.frame(variable = rnorm(100),value=rnorm(100)))
+
+plot = list()
 for (i in 1:6){
-  plot[[i]] <- ggplot(long.data, aes(x=long.data$variable, y=long.data$value)) + 
+  long.data = data[[i]]
+  
+  class(long.data)
+  
+  plot[[i]] <- ggplot(long.data, aes(x=variable, y=value)) +
+    geom_line(aes(group=1)) +
+    geom_point(size=2, shape=20) +
+    theme_bw()
+}
+
+do.call(ggarrange ,plot)
+```
+
+```{r}
+library(egg)
+library(ggplot2)
+```
+
+```{r}
+```
+
+
+```{r}
+
+
+
+
+
+
+gg1 <- ggplot(long.data, aes(x=long.data$variable, y=long.data$value)) + 
     geom_line(aes(group=1)) + 
     geom_point(size=2, shape=20) + 
     theme_bw()
-}
-do.call(ggarrange ,plot)
+
+save(gg1,file="./gg1.rda")
+
+print(gg1)
+
+   long.data = data.frame(variable = rnorm(100),value=rnorm(100))
+
+print(gg1)
+
+
+
+
 ```
+
+
+```{r}
+load("./gg1.rda")
+
+print(gg1)
+```
+
+
+
+```{r}
+ggarrange(plot[[1]],plot[[2]])
+```
+
+
+
+
+
+

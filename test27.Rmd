@@ -1,0 +1,19 @@
+---
+title: "title"
+author: "author"
+date: '`r Sys.Date()`'
+output: html_document
+---
+
+```{r}
+library(dplyr)
+library(ggplot2)
+iris %>%
+  mutate_at("Sepal.Length",cut, 5) %>%
+  mutate_at("Sepal.Width",cut,2) %>%
+  group_by_at(c(1,2,5)) %>%
+  summarize_at("Petal.Length",mean) %>%
+  ggplot(aes(Species, Petal.Length)) +
+  geom_col() +
+  facet_wrap(Sepal.Length ~ Sepal.Width,ncol=2)
+```

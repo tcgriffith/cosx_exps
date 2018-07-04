@@ -5,7 +5,7 @@ author: "Yihui Xie"
 date: "2016/12/12 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
-    lib_dir: libs
+    lib_dir: libsff
     nature:
       highlightStyle: github
       highlightLines: true
@@ -46,3 +46,16 @@ example xaringan slide for:
 
 https://stackoverflow.com/questions/49931518/add-github-corner-to-xaringan-title-slide
 
+# emoji
+
+smile:
+
+&#9786;
+😄
+🔥
+😁
+&#x1F600;
+&#x1F601;
+&#9786;
+<p>I will display &#9786;<p>
+<p>I will display &#x2660;<p>

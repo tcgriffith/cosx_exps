@@ -1,0 +1,55 @@
+---
+title: "Untitled"
+author: "TC"
+date: "July 2, 2018"
+output: 
+  tufte::tufte_html:
+  code_folding: true
+    
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+options(
+  digits=2, diffobj.pager="off", crayon.enabled=TRUE,
+   diffobj.format="ansi256", diffobj.brightness="light",
+  diffobj.format="html", diffobj.disp.width=120,
+  diffobj.ignore.white.space=TRUE
+)
+```
+
+## R Markdown
+
+^[a side note]
+
+```{r echo= FALSE}
+
+
+```
+
+```{marginfigure}
+
+library(diffobj)
+a <- b <- matrix(1:100, ncol=2)
+a <- a[-20,]
+b <- b[-45,]
+b[c(18, 44)] <- 999
+
+diffPrint(target=a, current=b)
+
+```
+
+
+`r tufte::quote_footer("abcde")`
+`r tufte::quote_footer("- abcde")`
+
+`r tufte::margin_note("test margin")`
+
+
+```{r results='asis'}
+library(tufte)
+newthought("In this section")
+quote_footer("adfasdf")
+```
+
