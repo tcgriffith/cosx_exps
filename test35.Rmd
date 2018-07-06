@@ -1,0 +1,48 @@
+---
+title: "test35"
+author: "TC"
+date: "July 6, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+https://stackoverflow.com/questions/51201859/writing-groups-of-rows-as-matrices-to-multiple-files-in-r
+
+```{r}
+tmp <- data.table::fread('
+Month | Year | Precip | Temp | PanEvap
+01 | 2018 | 20 | -4 | 12
+02 | 2018 | 15 | 0 | 10
+03 | 2018 | 60 | 5 | 40
+')
+
+
+
+
+```
+
+```{r}
+
+years = unique(tmp$Year)
+
+for (i in years){
+    
+    text1 = "Some text up here"
+    tmp_df =tmp[which(tmp$Year == i),c(-1,-2)] # remove month and year column
+    text2 = "More text down here"
+
+    fileConn <- file(paste0("./",i,".dat"),open="a")
+    writeLines(text1, fileConn)
+    write.table(tmp_df, fileConn,col.names = FALSE,row.names = FALSE)
+    writeLines(text2,fileConn)
+    close(fileConn)
+}
+
+
+```
+

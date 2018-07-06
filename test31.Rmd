@@ -1,0 +1,22 @@
+---
+title: "Untitled"
+author: "TC"
+date: "July 5, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+https://d.cosx.org/d/420065-lattice-qqmath
+
+```{r}
+library(lme4)
+
+lexdec <- languageR::lexdec
+
+library(lattice)
+qqmath(~RT|Subject, data = lexdec)
+```
+

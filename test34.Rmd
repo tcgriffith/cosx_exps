@@ -1,0 +1,113 @@
+---
+title: "test34"
+author: "TC"
+date: "July 5, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+diff <- function(x) {
+  
+  id_sapsh
+  SAP <- sum(x$mean[x$Population == "SAP"])
+  SH  <- sum(x$mean[x$Population == "SH"])
+  TD6 <- sum(x$mean[x$Population == "TD6"])
+
+  SAPvsSH   <- (SH*100/SAP)-100
+  SAPvsTD6  <- (TD6*100/SAP)-100
+  SHvsTD6   <- (TD6*100/SH)-100
+
+  show(SAPvsSH)
+  show(SAPvsTD6)
+  show(SHvsTD6)
+}
+
+```
+
+
+```{r}
+data = data.table::fread('
+Deciles Population n mean
+DC1 SAP 10 7
+DC2 SAP 10 7
+DC2 TD6 1 7
+DC3 SAP 10 7
+DC3 TD6 1 7
+DC4 SAP 10 7
+DC4 TD6 1 7
+DC5 SAP 10 7
+DC5 TD6 3 7
+DC6 SAP 10 7
+DC6 TD6 3 7
+DC7 SAP 10 7
+DC7 SH 10 7
+DC7 TD6 10 7
+DC8 SAP 10 7
+DC8 SH 10 7
+DC8 TD6 10 7
+DC9 SAP 10 7
+DC9 SH 10 7
+DC9 TD6 10 7
+DC10 SAP 10 7
+DC10 SH 10 7
+DC10 TD6 10 7
+'
+)
+```
+
+
+```{r}
+x <- data
+
+intersect(x$Deciles[which(x$Population == "SAP")],x$Deciles[which(x$Population == "SH")] )
+
+intersect(x$Deciles[which(x$Population == "SAP")],x$Deciles[which(x$Population == "TD6")] )
+
+intersect(x$Deciles[which(x$Population == "SH")],x$Deciles[which(x$Population == "TD6")] )
+
+
+
+
+```
+
+```{r}
+diff <- function(x) {
+  
+id_SAPvsSH <-   intersect(x$Deciles[which(x$Population == "SAP")],x$Deciles[which(x$Population == "SH")] )
+
+id_SAPvsTD6 <- intersect(x$Deciles[which(x$Population == "SAP")],x$Deciles[which(x$Population == "TD6")] )
+
+id_SHvsTD6 <-intersect(x$Deciles[which(x$Population == "SH")],x$Deciles[which(x$Population == "TD6")] )
+  
+  
+  SAP <- sum(x$mean[x$Population == "SAP"])
+  SH  <- sum(x$mean[x$Population == "SH"])
+  TD6 <- sum(x$mean[x$Population == "TD6"])
+
+               sum(x$mean[which])
+  SAPvsSH   <- (SH*100/SAP)-100
+  SAPvsTD6  <- (TD6*100/SAP)-100
+  SHvsTD6   <- (TD6*100/SH)-100
+
+  show(SAPvsSH)
+  show(SAPvsTD6)
+  show(SHvsTD6)
+}
+```
+
+
+```{r}
+x
+```
+
+```{r}
+library(dplyr)
+x %>% select(1,2,4) %>% tidyr::spread(key = Population, value = mean )
+```
+
