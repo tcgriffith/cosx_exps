@@ -6,3 +6,10 @@
 *.html
 *.png
 testit/
+*lib
+lib*
+*csv
+*rda
+*sqlite
+*js
+*dat
