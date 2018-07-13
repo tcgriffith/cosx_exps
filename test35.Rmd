@@ -35,9 +35,12 @@ for (i in years){
     text1 = "Some text up here"
     tmp_df =tmp[which(tmp$Year == i),c(-1,-2)] # remove month and year column
     text2 = "More text down here"
-
-    fileConn <- file(paste0("./",i,".dat"),open="a")
+    
+    fileConn <- file(paste0("./",i,".dat"),open="r")
     writeLines(text1, fileConn)
+    close(fileConn)
+    
+    fileConn <- file(paste0("./",i,".dat"),open="a")
     write.table(tmp_df, fileConn,col.names = FALSE,row.names = FALSE)
     writeLines(text2,fileConn)
     close(fileConn)
