@@ -1,0 +1,110 @@
+---
+title: "Untitled"
+author: "TC"
+date: "July 9, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## test Rcpp
+
+```{r}
+library(Rcpp)
+
+cppFunction('int add(int x, int y, int z) {
+  int sum = x + y + z;
+  return sum;
+}')
+
+```
+
+```{r}
+add
+```
+
+```{r}
+add(1,2,3)
+```
+
+
+## Sum
+
+```{r}
+sumR <- function(x) {
+  total <- 0
+  for (i in seq_along(x)) {
+    total <- total + x[i]
+  }
+  total
+}
+```
+
+```{r}
+cppFunction('double sumC(NumericVector x) {
+  int n = x.size();
+  double total = 0;
+  for(int i = 0; i < n; ++i) {
+    total += x[i];
+  }
+  return total;
+}')
+```
+
+```{r}
+x <- runif(1e3)
+microbenchmark::microbenchmark(
+  sum(x),
+  sumC(x),
+  sumR(x)
+)
+```
+
+
+
+## vector in vector out
+
+
+
+```{r}
+pdistR <- function(x, ys) {
+  sqrt((x - ys) ^ 2)
+}
+```
+
+```{r}
+cppFunction('NumericVector pdistC(double x, NumericVector ys) {
+  int n = ys.size();
+  NumericVector out(n);
+
+  for(int i = 0; i < n; ++i) {
+    out[i] = sqrt(pow(ys[i] - x, 2.0));
+  }
+  return out;
+}')
+```
+
+```{r}
+ys = runif(1e6)
+x = 1
+
+microbenchmark::microbenchmark(
+  pdistC(x,ys),
+  pdistR(x,ys)
+)
+```
+
+
+
+
+
+## source it
+
+```{r}
+
+sourceCpp("./testcpp.cpp")
+
+```
+

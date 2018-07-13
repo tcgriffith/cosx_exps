@@ -49,3 +49,11 @@ for (i in years){
 
 ```
 
+
+```{r}
+text = "This is an example text which contains some numbers written in words such as one, two, three. The text one continues to text two and text three. I also have five hundred fifty dollars. But I am looking for five hundred thousands three hundred fourty seven more to invest into some stocks.
+"
+
+gsub("\\sone|two|three|four|five|six|seven|eight|nine|ten|hundred|fifty|thousand[s]|fourty","",text)
+```
+
