@@ -1,0 +1,34 @@
+---
+title: "test37"
+author: "TC"
+date: "July 9, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(xml2)
+library(rvest)
+```
+
+https://stackoverflow.com/questions/51237754/web-scraping-with-rvest-works-with-first-page-of-website-but-not-others
+
+
+```{r}
+url <- 'https://uws-community.symplicity.com/index.php?s=student_group'
+webpage <- xml2::read_html(url)
+next_link <- rvest::html_nodes(webpage,".paging_nav a") %>% rvest::html_attr('href')
+```
+
+```{r}
+url2 <- paste0("https://uws-community.symplicity.com/index.php", 
+next_link)
+
+webpage2 <- read_html(url2)
+next_link2 <- html_nodes(webpage2,".paging_nav a") %>% html_attr('href')
+```
+
+
+
+

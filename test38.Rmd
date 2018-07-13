@@ -1,0 +1,56 @@
+---
+title: "test38"
+author: "TC"
+date: "July 9, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+https://stackoverflow.com/questions/51238042/key-value-mapping-of-axis-variable-labels-in-ggplot
+
+```{r}
+library("ggplot2")
+```
+
+```{r}
+
+library(ggplot2)
+
+ir <- data.frame(
+  sp = iris$Species,
+  sep.len = iris$Sepal.Length,
+  sep.wid = iris$Sepal.Width,
+  pet.len = iris$Petal.Length,
+  pet.wid = iris$Petal.Width
+)
+
+p <- ggplot(ir, aes(x=sep.len, y=sep.wid, col=sp)) + geom_point() +scale_color_discrete("species")
+
+
+## for lazy labels
+
+lazy.labels <- c(
+  sp     ='species',
+  sep.len='sepal length',
+  sep.wid='sepal width',
+  pet.len='petal length',
+  pet.wid='petal width'
+)
+
+p$labels <-lapply(p$labels,function(x){as.character(lazy.labels[x])})
+
+
+```
+
+
+```{r}
+print("hello world")
+
+plot(mtcars$mpg,mtcars$cyl)
+
+```
+
