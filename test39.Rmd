@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 https://stackoverflow.com/questions/51310488/automated-nicely-formated-book-of-lyrics-from-data-frame-using-markdown-knitr-a
 
-```{r}
+```{r echo=FALSE,results="asis"}
 library(data.table); library(magrittr); library(knitr); library(stringr);library(dplyr)
 dt <- fread("https://s3.amazonaws.com/assets.datacamp.com/blog_assets/prince_raw_data.csv")
 dt <- dt[301:303,2:6] #take three songs only 
@@ -27,7 +27,7 @@ for (i in 1:nrow(dt)){
   
   cat(glue::glue("# {album}\n\n"))
   cat(glue::glue("## {song}\n\n"))
-  cat(glue::glue("<pre>{lyrics}</pre>"))
+  cat(glue::glue("<blockquote>{lyrics}</blockquote>"))
 }
 
 ```
@@ -36,16 +36,26 @@ for (i in 1:nrow(dt)){
 
 ```{r echo=FALSE, results='asis'}
 
-# dt$text <- gsub("\n","\n\n",dt$text)
 
 for (i in 1:nrow(dt)){
-  album = dt$album[i]
-  song = dt$song[i]
-  lyrics = dt$text[i]
-  
-  cat(glue::glue("# {album}\n\n"))
-  cat(glue::glue("## {song}\n\n"))
-  cat(glue::glue("<pre>{lyrics}</pre>"))
+  text <- fread(dt$text[1],sep="\n",header = FALSE)
+  cat(paste0("# ",dt$album[i],"\n\n"))
+  cat(paste0("## ",dt$song[i],"\n\n"))
+  writeLines(paste0("> ",text[[1]],"  \n"),sep="")
+  # cat(paste0(dt$text[i]))
+  cat("\n\n")
 }
 ```
+
+```{r results="asis"}
+dt$text <- gsub("\n","  \n",dt$text)
+for (i in 1:nrow(dt)){
+  cat(paste0("# ",dt$album[i],"\n\n"))
+  cat(paste0("## ",dt$song[i],"\n\n"))
+  cat(paste0("> ",dt$text[[i]]))
+  # cat(paste0(dt$text[i]))
+  cat("\n\n")
+}
+```
+
 

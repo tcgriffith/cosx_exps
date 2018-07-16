@@ -1,0 +1,39 @@
+---
+title: "Untitled"
+author: "TC"
+date: "July 13, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+nmj<-matrix(5,50,20)
+Mnmj<-matrix(1,50,20)
+```
+
+
+```{r}
+
+for (t in 1:49){
+  Mnmj[t,c(1:10)]=0.9*nmj[t, c(1:10)]
+  Mnmj[t,c(11:20)]=1.2*nmj[t, c(11:20)]
+  j=1
+  for (j in 1:20){
+    if(j==1){
+      nmj[t+1,j]=(1-0.1)*Mnmj[t,j]+0.1*Mnmj[t,j+1]
+    } else {
+      if (j>=2 | j<=19){
+      nmj[t+1,j]=(1-2*0.1)*Mnmj[t,j]+0.1*Mnmj[t,j-1]+0.1*Mnmj[t,j+1]
+    } else {if (j==20){
+      nmj[t+1,j]=(1-0.1)*Mnmj[t,j]+0.1*Mnmj[t,j-1]
+    }
+    j=j+1
+  }}}}
+nmj
+```
+
