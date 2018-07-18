@@ -1,0 +1,14 @@
+---
+title: "Untitled"
+author: "TC"
+date: "July 18, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+https://stackoverflow.com/questions/51395463/how-to-set-the-day-month-and-year-in-a-posixlt-in-r
+

@@ -1,0 +1,27 @@
+---
+title: "Untitled"
+author: "TC"
+date: "July 18, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+https://stackoverflow.com/questions/51395291/subset-a-part-of-a-string-before-a-certain-pattern
+
+```{r}
+a =c(
+"S1_S2_S3_S9_AAACTGATFSRYB",
+"S3_S4_S12_S1_TTTTTTGATFSRYB",
+"S9_S4_S12_S1_S2_S19_S22_GTGTTTGATFSRYB"
+)
+
+gsub("(.*_).*_","",a)
+
+
+```
+
