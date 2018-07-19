@@ -1,0 +1,45 @@
+---
+title: "test48"
+author: "TC"
+date: "July 19, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r}
+library(nycflights13)
+library(tidyverse)
+library(lubridate)
+library(modelr)
+## DATA USED
+
+daily <- flights %>% 
+  mutate(date = make_date(year, month, day)) %>% 
+  group_by(date) %>% 
+  summarise(n = n()) %>% 
+  mutate(wday = lubridate::wday(date, label = T))
+
+mod_daily <- MASS::rlm(n ~ wday * splines::ns(date, 5), data = daily)
+
+daily <- daily %>% 
+  add_predictions(mod_daily) %>% 
+  add_residuals(mod_daily)
+
+## TOP_N TRY
+
+daily %>% 
+  group_by() %>%
+  top_n(4, wt=n)
+
+# SOLUTION USING ORDER()
+
+daily[order(-daily$resid),] %>% 
+      head()
+```
+
