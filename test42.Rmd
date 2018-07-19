@@ -1,0 +1,26 @@
+---
+title: "Untitled"
+author: "TC"
+date: "July 17, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+https://stackoverflow.com/questions/51371368/how-to-change-axis-labels-from-numeric-dates-to-string-in-ggplot
+
+```{r}
+library(ggplot2)
+date.numeric <- c(98,105,110,120,75,35,200,167,365,425,400,398)
+age.class <- c("juv","juv","juv","juv","juv","ad","ad","ad","ad","ad","ad","ad")
+mytable <- data.frame(date.numeric,age.class)
+
+mytable$date <- (as.Date(date.numeric,origin = "2015/1/1"))
+ggplot(mytable, aes(x=age.class, y=date)) +
+  geom_boxplot()
+```
+

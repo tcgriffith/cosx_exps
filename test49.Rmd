@@ -1,0 +1,22 @@
+---
+title: "Untitled"
+author: "TC"
+date: "July 19, 2018"
+output: 
+  bookdown::html_document2:
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# R Markdown
+
+```{r fig.align='left',fig.cap="caption left"}
+knitr::include_graphics("https://d.cosx.org/assets/avatars/flgi8eglklgxd03p.png")
+```
+
+```{r fig.align='right',fig.cap="caption right"}
+knitr::include_graphics("https://d.cosx.org/assets/avatars/flgi8eglklgxd03p.png")
+```

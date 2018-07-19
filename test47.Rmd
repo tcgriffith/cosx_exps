@@ -1,0 +1,54 @@
+---
+title: "test47"
+author: "TC"
+date: "July 19, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+library(plotly)
+
+p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+   geom_point() + geom_smooth()
+
+tmp <- plotly::plotly_build(p)
+
+# class(tmp) <- class(tmp)[2]
+
+tmp
+
+tmp3 <- plotly::plotly_json(p,jsonedit =TRUE)
+
+tmp3
+
+```
+
+
+```{r}
+library(sigma)
+d = system.file("examples/ediaspora.gexf.xml", package = "sigma")
+tmp2 <- sigma(d)
+
+tmp2
+```
+
+
+
+```{r}
+library(plotly)
+# install required listviewer pkg if necessary
+#install.packages("listviewer")
+
+p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+   geom_point() + geom_smooth()
+
+# use jsonedit from listviewer pkg
+plotly_json(p, jsonedit = TRUE)
+```
+

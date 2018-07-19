@@ -1,0 +1,24 @@
+---
+title: "Untitled"
+author: "TC"
+date: "July 19, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+https://d.cosx.org/d/420079-r-csv-file
+
+```{r}
+filename <- paste0("./final_table_",format(Sys.Date(),"%Y%m%d"),".csv")
+
+filename
+
+#write.table(mtcars,file=filename)
+
+```
+

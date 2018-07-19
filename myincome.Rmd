@@ -1,0 +1,21 @@
+---
+title: "Untitled"
+author: "TC"
+date: "April 23, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+tmp <- read.csv("~/Downloads/StatementCsv.csv")
+
+
+tmp %>%
+  ggplot(aes(x=1:nrow(tmp),y=Balance))+geom_point()+geom_line()
+```
+
