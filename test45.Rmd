@@ -1,0 +1,20 @@
+---
+output: html_document
+---
+
+## htmlTables
+
+
+```{r, results='asis'}
+library(data.table)
+library(htmlTable)
+library(ggplot2)
+a <- data.table(matrix(seq(1, 100, 5), ncol = 2))
+htmlTable(a)
+for (i in 10:11) {
+    cat( paste('## title no.', i, '\n' ) ) 
+    print(ggplot(a*i, aes(x = V1, y = V2)) + geom_point())
+    writeLines(htmlTable(a*i))
+    cat('\n')
+}
+```

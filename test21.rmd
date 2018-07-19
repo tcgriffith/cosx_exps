@@ -37,3 +37,20 @@ write.csv(data2,paste0(j,'new.csv'),col.names=T,row.names = F,fileEncoding = "UT
 head(data2)
 ```
 
+
+
+```{r}
+x=1:100
+y=0.90^x
+
+df <- data.frame(x=x,y=y)
+
+gg <- ggplot(data=df,aes(x=x,y=1-y))+
+  geom_point()+
+  geom_point(aes(y=0.10*x),colour="red")+
+  geom_line(aes(x=10))+
+  ylim(0,1)
+
+print(gg)
+```
+
