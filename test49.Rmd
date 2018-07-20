@@ -2,9 +2,7 @@
 title: "Untitled"
 author: "TC"
 date: "July 19, 2018"
-output: 
-  bookdown::html_document2:
-    code_folding: hide
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -20,3 +18,12 @@ knitr::include_graphics("https://d.cosx.org/assets/avatars/flgi8eglklgxd03p.png"
 ```{r fig.align='right',fig.cap="caption right"}
 knitr::include_graphics("https://d.cosx.org/assets/avatars/flgi8eglklgxd03p.png")
 ```
+
+
+
+```{r fig.cap="I am a cap. ^[I am a foot note]"}
+knitr::include_graphics("https://d.cosx.org/assets/avatars/flgi8eglklgxd03p.png")
+```
+
+
+![I am a cap too ^[and another foot note]](https://d.cosx.org/assets/avatars/flgi8eglklgxd03p.png)
