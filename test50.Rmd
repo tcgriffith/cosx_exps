@@ -1,0 +1,21 @@
+---
+title: "Untitled"
+author: "TC"
+date: "July 20, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+![ 插入图^[这里是脚注]](https://d.cosx.org/assets/avatars/flgi8eglklgxd03p.png){ width=45% }
+
+
+```{r fig.cap="插入图^[这里是脚注]"}
+knitr::include_graphics("https://d.cosx.org/assets/avatars/flgi8eglklgxd03p.png")
+```
+
+

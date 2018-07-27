@@ -1,0 +1,27 @@
+---
+title: "Untitled"
+author: "TC"
+date: "7/27/2018"
+output: 
+  html_document:
+    df_print: "kable"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## print tibble
+
+```{r}
+df <- tibble::as.tibble(mtcars)
+
+tibble:::print.tbl_df(head(df))
+```
+
+## print normally
+
+```{r}
+head(df)
+```
+

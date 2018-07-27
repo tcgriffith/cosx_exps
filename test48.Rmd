@@ -43,3 +43,57 @@ daily[order(-daily$resid),] %>%
       head()
 ```
 
+
+
+```{r}
+timeperiod <- 1:18
+ID <- c("TOM", "TOM", "SALLY", "SALLY", "RICHIE", "TOM", "TOM", "SALLY", "RICHIE", "RICHIE", "RICHIE", "SALLY", "TOM", "TOM", "TOM", "RICHIE", "RICHIE", "RICHIE")
+referredvisit <- c(0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0)
+# df <- cbind(timeperiod, ID, referredvisit)
+# df <- as.data.frame(df)
+
+result <- c(0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 3, 0, 0, 1, 0, 2, 0)
+
+df <- data.frame(timeperiod,ID,referredvisit,result)
+```
+
+```{r}
+
+library(tidyverse)
+
+df %>% group_by(ID) %>% arrange(timeperiod, .by_group = TRUE) -> df.tmp
+
+
+
+```
+
+```{r}
+df.tmp
+
+result2 = numeric(nrow(df.tmp))
+
+lastid = ""
+
+count = 0
+
+for (i in 1:nrow(df.tmp)){
+  if (lastid != df.tmp$ID[i] ){
+    count = 0;
+    lastid = df.tmp$ID[i]
+  }
+  if (df.tmp$referredvisit[i] == 1){
+    count = count +1
+    result2[i] == 0
+  }
+  
+  if (df.tmp$referredvisit[i] ==0) {
+    result2[i] = count
+    count = 0
+    
+  }
+}
+
+df.tmp$result2 = result2
+
+```
+

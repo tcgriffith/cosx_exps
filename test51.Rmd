@@ -1,0 +1,50 @@
+---
+title: "Untitled"
+author: "TC"
+date: "7/23/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r warning=FALSE}
+library(trelliscopejs)
+library(ggplot2)
+library(dplyr)
+
+library(tidyr)
+library(rbokeh)
+
+d <- mpg %>%
+  group_by(manufacturer, class) %>%
+  nest() %>%
+  mutate(panel = map_plot(data,
+    ~ figure(xlab = "City mpg", ylab = "Highway mpg") %>%
+        ly_points(cty, hwy, data = .x)))
+
+tmp <- d %>%
+  trelliscope(name = "city_vs_highway_mpg1", self_contained = TRUE)
+```
+
+
+```{r warning=FALSE}
+mpg %>%
+  group_by(manufacturer, class) %>%
+  summarise(
+    mean_city_mpg = cog(mean(cty), desc = "Mean city mpg"),
+    mean_hwy_mpg = cog(mean(hwy), desc = "Mean highway mpg"),
+    panel = panel(
+      figure(xlab = "City mpg", ylab = "Highway mpg",
+        xlim = c(7, 37), ylim = c(9, 47)) %>%
+        ly_points(cty, hwy,
+          hover = data_frame(model = paste(year, model),
+            cty = cty, hwy = hwy)))) %>%
+  trelliscope(name = "city_vs_highway_mpg2", nrow = 1, ncol = 2,
+              self_contained = TRUE)
+```
+
