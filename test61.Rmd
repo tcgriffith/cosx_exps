@@ -1,0 +1,34 @@
+---
+title: "Untitled"
+author: "TC"
+date: "8/23/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+data <- data.frame(cbind(apple.fruit=1:3, dog.pet=1:3, pear.fruit=10001:10003, cat.pet=11:13))
+
+data
+```
+
+```{r}
+library(tidyverse)
+
+data <- data.frame(cbind(apple.fruit=1:3, dog.pet=1:3, pear.fruit=10001:10003, cat.pet=11:13))
+data.tidy <- data %>%
+  gather(key="id",value = "value") %>%
+  mutate(type = gsub(".*\\.(.*$)","\\1",id),
+         name = gsub("(.*)\\..*$","\\1",id)) %>%
+  group_by(type) %>%
+  mutate(scaleit = scale(value))
+
+data.tidy
+
+```
+

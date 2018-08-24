@@ -1,0 +1,72 @@
+---
+title: "Untitled"
+author: "TC"
+date: "8/17/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r}
+dataFnsDir <- "/home/giuseppa/Development/glycoPipeApp/OUT/openMS/INPUT_DATA/"
+
+lc <- list()
+
+lc[[1]] <- c("150413_JF_GPeps_SIDtarg_GPstdMix_Tryp_2runs_v3_PSMs.txt","160824_JF_udep_tryp_Hi_SIDdda_FULL_NewParse-(05)_PSMs.txt"
+, "JF_160426_Dep2Plas_ctryp_Gpep_SIDtargFULL__PSMs.txt"       ,"JF_160426_Dep2Plas_tryp_Gpep_SIDtarg-(06)_PSMs.txt"  
+)
+
+lc[[2]] <- c(
+"150413_JF_GPeps_SIDtarg_GPstdMix_Tryp_2runs_v3_PSMs.txt"  , "160824_JF_udep_tryp_Hi_SIDdda_FULL_NewParse-(05)_PSMs.txt",
+"JF_160426_Dep2Plas_ctryp_Gpep_SIDtargFULL__PSMs.txt"    
+)
+
+lc[[3]] <- c(
+  "150413_JF_GPeps_SIDtarg_GPstdMix_Tryp_2runs_v3_PSMs.txt",
+"160824_JF_udep_tryp_Hi_SIDdda_FULL_NewParse-(05)_PSMs.txt"
+)
+```
+
+```{r}
+
+dataFnsDir <- "/home/giuseppa/Development/glycoPipeApp/OUT/openMS/INPUT_DATA/"
+
+lc <- list()
+
+lc[[1]] <- c("150413_JF_GPeps_SIDtarg_GPstdMix_Tryp_2runs_v3_PSMs.txt","160824_JF_udep_tryp_Hi_SIDdda_FULL_NewParse-(05)_PSMs.txt"
+, "JF_160426_Dep2Plas_ctryp_Gpep_SIDtargFULL__PSMs.txt"       ,"JF_160426_Dep2Plas_tryp_Gpep_SIDtarg-(06)_PSMs.txt"  
+)
+
+lc[[2]] <- c(
+"150413_JF_GPeps_SIDtarg_GPstdMix_Tryp_2runs_v3_PSMs.txt"  , "160824_JF_udep_tryp_Hi_SIDdda_FULL_NewParse-(05)_PSMs.txt",
+"JF_160426_Dep2Plas_ctryp_Gpep_SIDtargFULL__PSMs.txt"    
+)
+
+lc[[3]] <- c(
+  "150413_JF_GPeps_SIDtarg_GPstdMix_Tryp_2runs_v3_PSMs.txt",
+"160824_JF_udep_tryp_Hi_SIDdda_FULL_NewParse-(05)_PSMs.txt"
+)
+
+
+# actual code
+lc.path <- lapply(lc,function(x) paste0(dataFnsDir,x))
+
+# maybe this is what you want?
+lc.path.v <- unlist(lc.path)
+lc.path.v
+
+
+
+
+lc.alldf <- lapply(lc.path, data.table::fread, header = TRUE, sep = "/")
+lc.onedf <- dplyr::bind_rows(lc.alldf)
+#cbind them
+
+
+```
+

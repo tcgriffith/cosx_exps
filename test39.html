@@ -132,7 +132,6 @@ $(document).ready(function () {
 <div id="lyrics" class="section level2">
 <h2>lyrics</h2>
 <p><a href="https://stackoverflow.com/questions/51310488/automated-nicely-formated-book-of-lyrics-from-data-frame-using-markdown-knitr-a" class="uri">https://stackoverflow.com/questions/51310488/automated-nicely-formated-book-of-lyrics-from-data-frame-using-markdown-knitr-a</a></p>
-<pre class="r"><code>library(data.table); library(magrittr); library(knitr); library(stringr);library(dplyr)</code></pre>
 <pre><code>## 
 ## Attaching package: 'dplyr'</code></pre>
 <pre><code>## The following objects are masked from 'package:data.table':
@@ -144,180 +143,454 @@ $(document).ready(function () {
 <pre><code>## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>dt &lt;- fread(&quot;https://s3.amazonaws.com/assets.datacamp.com/blog_assets/prince_raw_data.csv&quot;)
-dt &lt;- dt[301:303,2:6] #take three songs only </code></pre>
 </div>
 <div id="other-songs" class="section level1">
 <h1>Other Songs</h1>
 <div id="hey-louie-louie" class="section level2">
 <h2>hey louie louie</h2>
-<pre>Prince
-Miscellaneous
-Hey, Louie Louie
-Yeah, Louie’s rap - take 1 
-We got a funky one 
-Take me out 2 the ballpark - strike 1! 
-Louie Louie in the house 
-Come on y’all, get some 
-I’m the designated hitter in the house 
-So don't play the hold out 
-Tell 'em what I’m talkin’ about 
-Set it up - swingin’ - strike 2! 
-Whole house swingin’ 
-People s in' - ears ringin’ 
-With the sound that I’m throwin’ down 
-Strike 3 - U’re out! 
-Dropped it in the first round 
-CHORUS: 
-Hey, Louie Louie (Go, go, go, go, go, go Louie, go) 
-Aw yeah 
-Hey, Louie Louie (Go, go, go, go, go, go Louie, go) 
-Game 1 of a 7 games series 
-Who’s up 2 bat? L-O-U-I-E 
-Now freeze, can everybody hear me? 
-Mic check - 1 2 3 - Ahem! Cool! 
-Now let me resume, make room 
-As I zoom 2 the charts with a hype tune 
-Step if U wanna with the squeeze play fly 
-But before U know it - another R.B.I. 
-Yeah 
-CHORUS 
-Time 2 switch - here comes a change-up 
-I’m kicking it at the park with an All-star line up 
-Comin’ with the new gears 
-Sure 2 hit the kind of record these execs are sure 2 benefit from 
-Yo, hold up P, gimme some 
-Put some more kick in that bass drum - boom! 
-This version makes me wanna get dumb 
-U got me juiced and I’m lookin' 4 the home run 
-Yeah 
-Hey Louie Louis (Go, go, go, go, go, go Louie, go) 
-Who’s in the house? 
-Hey Louie Louis (Go, go, go, go, go, go Louie, go) 
-Slide in with attention 
-I'm scoring a run, 4 which there is no prevention 
-Home field advantage don’t mean a thing 
-As long as U bring your swing with soul and feeling 
-Dig down deep - reach a little farther 
-Come correct, or don’t even bother 
-Sooner than later everybody will know my name 
-Louie Louie’s headed 4 the Hall of Fame - yeah! 
-CHORUS 
-Yo ladies, what’s the call? 
-Louie Louis’s in the house with the party y’all (Oh!) 
-Oh! Rollin’ up hard - this time flexin’ 
-5-deep sitting in my Benz 
-4 those who diss and dismiss me 
-Try 2 write me off and say that I’m history 
-Before I even start, they said I’m through bookin’ 
-Boy, I’m like Ball Park Franks - I'm plump when I’m cookin' 
-CHORUS</pre>
+<blockquote>
+Prince Miscellaneous Hey, Louie Louie Yeah, Louie’s rap - take 1 We got a funky one Take me out 2 the ballpark - strike 1! Louie Louie in the house Come on y’all, get some I’m the designated hitter in the house So don’t play the hold out Tell ‘em what I’m talkin’ about Set it up - swingin’ - strike 2! Whole house swingin’ People s in’ - ears ringin’ With the sound that I’m throwin’ down Strike 3 - U’re out! Dropped it in the first round CHORUS: Hey, Louie Louie (Go, go, go, go, go, go Louie, go) Aw yeah Hey, Louie Louie (Go, go, go, go, go, go Louie, go) Game 1 of a 7 games series Who’s up 2 bat? L-O-U-I-E Now freeze, can everybody hear me? Mic check - 1 2 3 - Ahem! Cool! Now let me resume, make room As I zoom 2 the charts with a hype tune Step if U wanna with the squeeze play fly But before U know it - another R.B.I. Yeah CHORUS Time 2 switch - here comes a change-up I’m kicking it at the park with an All-star line up Comin’ with the new gears Sure 2 hit the kind of record these execs are sure 2 benefit from Yo, hold up P, gimme some Put some more kick in that bass drum - boom! This version makes me wanna get dumb U got me juiced and I’m lookin’ 4 the home run Yeah Hey Louie Louis (Go, go, go, go, go, go Louie, go) Who’s in the house? Hey Louie Louis (Go, go, go, go, go, go Louie, go) Slide in with attention I’m scoring a run, 4 which there is no prevention Home field advantage don’t mean a thing As long as U bring your swing with soul and feeling Dig down deep - reach a little farther Come correct, or don’t even bother Sooner than later everybody will know my name Louie Louie’s headed 4 the Hall of Fame - yeah! CHORUS Yo ladies, what’s the call? Louie Louis’s in the house with the party y’all (Oh!) Oh! Rollin’ up hard - this time flexin’ 5-deep sitting in my Benz 4 those who diss and dismiss me Try 2 write me off and say that I’m history Before I even start, they said I’m through bookin’ Boy, I’m like Ball Park Franks - I’m plump when I’m cookin’ CHORUS
+</blockquote>
 </div>
 </div>
 <div id="crystal-ball" class="section level1">
 <h1>Crystal Ball</h1>
 <div id="hide-the-bone" class="section level2">
 <h2>hide the bone</h2>
-<pre>Hide the bone, ah yeah, ah yeah
-Hide the bone, oh, yeah
-I can't hold it any longer it's gettin' harder every day
-The need for you is getting stronger than my need to play
-Playin' hard to get is gettin' hard to play how can I be cool
-Fallin' every day? Playin' hard to get is gettin' hard to play
-How can I resist? Love has got me sayin', baby
-Give it up bang, bang before it be gone hide the bone
-Oh, when you whisper that you want me
-Press your body close to mine
-I feel the fire burnin' and I just wanna surrender
-I wanna surrender every time, hey
-Playin' hard to get is gettin' hard to play how can I be cool
-Fallin' every day? Playin' hard to get is gettin' hard to play
-How can I resist? Love has got me sayin', baby
-Give it up bang, bang before it be gone hide the bone
-Hide the bone, hey baby, bone
-Hide the bone, hey baby, bone
-You're goin' to ruin my reputation
-I'm used to makin' all the rules
-But I can't control this situation, I can't control it
-When it comes to me and you
-You're breakin' down my resistance
-I won't ever be the same, oh no
-You kiss away all my defenses
-This time the hunter is captured by the game bone
-Playin' hard to get is gettin' hard to play how can I be cool
-Fallin' every day? Playin' hard to get is gettin' hard to play
-How can I resist? Love has got me sayin', baby
-Give it up bang, bang before it be gone hide the bone
-Ah yeah, hey
-Bone whatever you do keep it movin', whatever you do don't stop
-Bone whatever you do keep it movin', whatever you do don't stop
-Bone whatever you do keep it movin', whatever you do don't stop
-Bone whatever you do keep it movin', whatever you do don't stop
-Don't stop the groove, don't stop the groove
-Don't stop the groove, don't stop the groove
-Don't stop the groove, don't stop the groove
-Don't stop the groove, don't stop the groove
-Let's hide the bone
-Bone, bone, bone, bone, bone, bone, bone, bone, bone
-Let's hide the bone, whatcha stoppin' for,  a?
-I didn't tell you to stop</pre>
+<blockquote>
+Hide the bone, ah yeah, ah yeah Hide the bone, oh, yeah I can’t hold it any longer it’s gettin’ harder every day The need for you is getting stronger than my need to play Playin’ hard to get is gettin’ hard to play how can I be cool Fallin’ every day? Playin’ hard to get is gettin’ hard to play How can I resist? Love has got me sayin’, baby Give it up bang, bang before it be gone hide the bone Oh, when you whisper that you want me Press your body close to mine I feel the fire burnin’ and I just wanna surrender I wanna surrender every time, hey Playin’ hard to get is gettin’ hard to play how can I be cool Fallin’ every day? Playin’ hard to get is gettin’ hard to play How can I resist? Love has got me sayin’, baby Give it up bang, bang before it be gone hide the bone Hide the bone, hey baby, bone Hide the bone, hey baby, bone You’re goin’ to ruin my reputation I’m used to makin’ all the rules But I can’t control this situation, I can’t control it When it comes to me and you You’re breakin’ down my resistance I won’t ever be the same, oh no You kiss away all my defenses This time the hunter is captured by the game bone Playin’ hard to get is gettin’ hard to play how can I be cool Fallin’ every day? Playin’ hard to get is gettin’ hard to play How can I resist? Love has got me sayin’, baby Give it up bang, bang before it be gone hide the bone Ah yeah, hey Bone whatever you do keep it movin’, whatever you do don’t stop Bone whatever you do keep it movin’, whatever you do don’t stop Bone whatever you do keep it movin’, whatever you do don’t stop Bone whatever you do keep it movin’, whatever you do don’t stop Don’t stop the groove, don’t stop the groove Don’t stop the groove, don’t stop the groove Don’t stop the groove, don’t stop the groove Don’t stop the groove, don’t stop the groove Let’s hide the bone Bone, bone, bone, bone, bone, bone, bone, bone, bone Let’s hide the bone, whatcha stoppin’ for, a? I didn’t tell you to stop
+</blockquote>
 </div>
 </div>
 <div id="other-songs-1" class="section level1">
 <h1>Other Songs</h1>
 <div id="high-fashion" class="section level2">
 <h2>high fashion</h2>
-<pre>Prince
-Miscellaneous
-High Fashion
-I know a sexy little girl 
-She's never in the low class world 
-This woman is all the way vogue 
-High Fashion is where her money goes 
-She dines at Le Dome up on the strip 
-Cheap liquor never touches her lips 
-Her brandy's imported every week 
-No problem, 7,000 easy 
-High Fashion is where her money goes 
-High Fashion - This girl is all the way vogue 
-She's never in the low class world 
-High Fashion - Stuck up little rich girl 
-High Fashion 
-High Fashion, yeah 
-I met her dancin' at Le Dome 
-I offered dinner at my home 
-She said no, all of her friends laughed 
-Funny how the laughin' stopped when I flashed all the cash I had 
-(I'm talkin') $1900 is 2 much cash 2 hold 
-One of my boys had 2 carry half, now honey U know that's bold 
-Wait a minute 
-She had the nerve 2 ask what kinda car I had 
-&quot;&quot;Honey, I'm ridin' in back of a Rolls Royce limo custom-painted plaid!&quot;&quot; 
-High Fashion is where my money goes 
-High Fashion - Honey, I'm all the way vogue 
-I'm never in the low class world 
-High Fashion - And I just love little rich girls 
-(High Fashion) High Fashion (High Fashion) 
-Hot Station - I took the child 2 my crib 
-Donation - Do U take or do U give? 
-She took one look at the swimmin' pool 
-I said &quot;&quot;I'll donate&quot;&quot; - We were 2 swimmin' fools 
-High Fashion is where our money goes 
-High Fashion - All the way vogue 
-We're never in the low class world 
-High Fashion - Don't be a little stuck up rich girl 
-All the way vogue {x2} 
-I'm all the way vogue 
-Yeah, yeah 
-(High Fashion) {repeats in BG} 
-Dinner at Le Dome 
-Little girl 
-Money man 
-I'm the money man 
-Money man {x2} 
-High Fashion {x4} 
-Ohhhhh 
-(High Fashion) {x2}</pre>
+<blockquote>
+Prince Miscellaneous High Fashion I know a sexy little girl She’s never in the low class world This woman is all the way vogue High Fashion is where her money goes She dines at Le Dome up on the strip Cheap liquor never touches her lips Her brandy’s imported every week No problem, 7,000 easy High Fashion is where her money goes High Fashion - This girl is all the way vogue She’s never in the low class world High Fashion - Stuck up little rich girl High Fashion High Fashion, yeah I met her dancin’ at Le Dome I offered dinner at my home She said no, all of her friends laughed Funny how the laughin’ stopped when I flashed all the cash I had (I’m talkin’) $1900 is 2 much cash 2 hold One of my boys had 2 carry half, now honey U know that’s bold Wait a minute She had the nerve 2 ask what kinda car I had “”Honey, I’m ridin’ in back of a Rolls Royce limo custom-painted plaid!“” High Fashion is where my money goes High Fashion - Honey, I’m all the way vogue I’m never in the low class world High Fashion - And I just love little rich girls (High Fashion) High Fashion (High Fashion) Hot Station - I took the child 2 my crib Donation - Do U take or do U give? She took one look at the swimmin’ pool I said “”I’ll donate“” - We were 2 swimmin’ fools High Fashion is where our money goes High Fashion - All the way vogue We’re never in the low class world High Fashion - Don’t be a little stuck up rich girl All the way vogue {x2} I’m all the way vogue Yeah, yeah (High Fashion) {repeats in BG} Dinner at Le Dome Little girl Money man I’m the money man Money man {x2} High Fashion {x4} Ohhhhh (High Fashion) {x2}
+</blockquote>
+</div>
+</div>
+<div id="other-songs-2" class="section level1">
+<h1>Other Songs</h1>
+<div id="hey-louie-louie-1" class="section level2">
+<h2>hey louie louie</h2>
+<blockquote>
+<p>Prince<br />
+Miscellaneous<br />
+Hey, Louie Louie<br />
+Yeah, Louie’s rap - take 1<br />
+We got a funky one<br />
+Take me out 2 the ballpark - strike 1!<br />
+Louie Louie in the house<br />
+Come on y’all, get some<br />
+I’m the designated hitter in the house<br />
+So don’t play the hold out<br />
+Tell ‘em what I’m talkin’ about<br />
+Set it up - swingin’ - strike 2!<br />
+Whole house swingin’<br />
+People s in’ - ears ringin’<br />
+With the sound that I’m throwin’ down<br />
+Strike 3 - U’re out!<br />
+Dropped it in the first round<br />
+CHORUS:<br />
+Hey, Louie Louie (Go, go, go, go, go, go Louie, go)<br />
+Aw yeah<br />
+Hey, Louie Louie (Go, go, go, go, go, go Louie, go)<br />
+Game 1 of a 7 games series<br />
+Who’s up 2 bat? L-O-U-I-E<br />
+Now freeze, can everybody hear me?<br />
+Mic check - 1 2 3 - Ahem! Cool!<br />
+Now let me resume, make room<br />
+As I zoom 2 the charts with a hype tune<br />
+Step if U wanna with the squeeze play fly<br />
+But before U know it - another R.B.I.<br />
+Yeah<br />
+CHORUS<br />
+Time 2 switch - here comes a change-up<br />
+I’m kicking it at the park with an All-star line up<br />
+Comin’ with the new gears<br />
+Sure 2 hit the kind of record these execs are sure 2 benefit from<br />
+Yo, hold up P, gimme some<br />
+Put some more kick in that bass drum - boom!<br />
+This version makes me wanna get dumb<br />
+U got me juiced and I’m lookin’ 4 the home run<br />
+Yeah<br />
+Hey Louie Louis (Go, go, go, go, go, go Louie, go)<br />
+Who’s in the house?<br />
+Hey Louie Louis (Go, go, go, go, go, go Louie, go)<br />
+Slide in with attention<br />
+I’m scoring a run, 4 which there is no prevention<br />
+Home field advantage don’t mean a thing<br />
+As long as U bring your swing with soul and feeling<br />
+Dig down deep - reach a little farther<br />
+Come correct, or don’t even bother<br />
+Sooner than later everybody will know my name<br />
+Louie Louie’s headed 4 the Hall of Fame - yeah!<br />
+CHORUS<br />
+Yo ladies, what’s the call?<br />
+Louie Louis’s in the house with the party y’all (Oh!)<br />
+Oh! Rollin’ up hard - this time flexin’<br />
+5-deep sitting in my Benz<br />
+4 those who diss and dismiss me<br />
+Try 2 write me off and say that I’m history<br />
+Before I even start, they said I’m through bookin’<br />
+Boy, I’m like Ball Park Franks - I’m plump when I’m cookin’<br />
+CHORUS</p>
+</blockquote>
+</div>
+</div>
+<div id="crystal-ball-1" class="section level1">
+<h1>Crystal Ball</h1>
+<div id="hide-the-bone-1" class="section level2">
+<h2>hide the bone</h2>
+<blockquote>
+<p>Prince<br />
+Miscellaneous<br />
+Hey, Louie Louie<br />
+Yeah, Louie’s rap - take 1<br />
+We got a funky one<br />
+Take me out 2 the ballpark - strike 1!<br />
+Louie Louie in the house<br />
+Come on y’all, get some<br />
+I’m the designated hitter in the house<br />
+So don’t play the hold out<br />
+Tell ‘em what I’m talkin’ about<br />
+Set it up - swingin’ - strike 2!<br />
+Whole house swingin’<br />
+People s in’ - ears ringin’<br />
+With the sound that I’m throwin’ down<br />
+Strike 3 - U’re out!<br />
+Dropped it in the first round<br />
+CHORUS:<br />
+Hey, Louie Louie (Go, go, go, go, go, go Louie, go)<br />
+Aw yeah<br />
+Hey, Louie Louie (Go, go, go, go, go, go Louie, go)<br />
+Game 1 of a 7 games series<br />
+Who’s up 2 bat? L-O-U-I-E<br />
+Now freeze, can everybody hear me?<br />
+Mic check - 1 2 3 - Ahem! Cool!<br />
+Now let me resume, make room<br />
+As I zoom 2 the charts with a hype tune<br />
+Step if U wanna with the squeeze play fly<br />
+But before U know it - another R.B.I.<br />
+Yeah<br />
+CHORUS<br />
+Time 2 switch - here comes a change-up<br />
+I’m kicking it at the park with an All-star line up<br />
+Comin’ with the new gears<br />
+Sure 2 hit the kind of record these execs are sure 2 benefit from<br />
+Yo, hold up P, gimme some<br />
+Put some more kick in that bass drum - boom!<br />
+This version makes me wanna get dumb<br />
+U got me juiced and I’m lookin’ 4 the home run<br />
+Yeah<br />
+Hey Louie Louis (Go, go, go, go, go, go Louie, go)<br />
+Who’s in the house?<br />
+Hey Louie Louis (Go, go, go, go, go, go Louie, go)<br />
+Slide in with attention<br />
+I’m scoring a run, 4 which there is no prevention<br />
+Home field advantage don’t mean a thing<br />
+As long as U bring your swing with soul and feeling<br />
+Dig down deep - reach a little farther<br />
+Come correct, or don’t even bother<br />
+Sooner than later everybody will know my name<br />
+Louie Louie’s headed 4 the Hall of Fame - yeah!<br />
+CHORUS<br />
+Yo ladies, what’s the call?<br />
+Louie Louis’s in the house with the party y’all (Oh!)<br />
+Oh! Rollin’ up hard - this time flexin’<br />
+5-deep sitting in my Benz<br />
+4 those who diss and dismiss me<br />
+Try 2 write me off and say that I’m history<br />
+Before I even start, they said I’m through bookin’<br />
+Boy, I’m like Ball Park Franks - I’m plump when I’m cookin’<br />
+CHORUS</p>
+</blockquote>
+</div>
+</div>
+<div id="other-songs-3" class="section level1">
+<h1>Other Songs</h1>
+<div id="high-fashion-1" class="section level2">
+<h2>high fashion</h2>
+<blockquote>
+<p>Prince<br />
+Miscellaneous<br />
+Hey, Louie Louie<br />
+Yeah, Louie’s rap - take 1<br />
+We got a funky one<br />
+Take me out 2 the ballpark - strike 1!<br />
+Louie Louie in the house<br />
+Come on y’all, get some<br />
+I’m the designated hitter in the house<br />
+So don’t play the hold out<br />
+Tell ‘em what I’m talkin’ about<br />
+Set it up - swingin’ - strike 2!<br />
+Whole house swingin’<br />
+People s in’ - ears ringin’<br />
+With the sound that I’m throwin’ down<br />
+Strike 3 - U’re out!<br />
+Dropped it in the first round<br />
+CHORUS:<br />
+Hey, Louie Louie (Go, go, go, go, go, go Louie, go)<br />
+Aw yeah<br />
+Hey, Louie Louie (Go, go, go, go, go, go Louie, go)<br />
+Game 1 of a 7 games series<br />
+Who’s up 2 bat? L-O-U-I-E<br />
+Now freeze, can everybody hear me?<br />
+Mic check - 1 2 3 - Ahem! Cool!<br />
+Now let me resume, make room<br />
+As I zoom 2 the charts with a hype tune<br />
+Step if U wanna with the squeeze play fly<br />
+But before U know it - another R.B.I.<br />
+Yeah<br />
+CHORUS<br />
+Time 2 switch - here comes a change-up<br />
+I’m kicking it at the park with an All-star line up<br />
+Comin’ with the new gears<br />
+Sure 2 hit the kind of record these execs are sure 2 benefit from<br />
+Yo, hold up P, gimme some<br />
+Put some more kick in that bass drum - boom!<br />
+This version makes me wanna get dumb<br />
+U got me juiced and I’m lookin’ 4 the home run<br />
+Yeah<br />
+Hey Louie Louis (Go, go, go, go, go, go Louie, go)<br />
+Who’s in the house?<br />
+Hey Louie Louis (Go, go, go, go, go, go Louie, go)<br />
+Slide in with attention<br />
+I’m scoring a run, 4 which there is no prevention<br />
+Home field advantage don’t mean a thing<br />
+As long as U bring your swing with soul and feeling<br />
+Dig down deep - reach a little farther<br />
+Come correct, or don’t even bother<br />
+Sooner than later everybody will know my name<br />
+Louie Louie’s headed 4 the Hall of Fame - yeah!<br />
+CHORUS<br />
+Yo ladies, what’s the call?<br />
+Louie Louis’s in the house with the party y’all (Oh!)<br />
+Oh! Rollin’ up hard - this time flexin’<br />
+5-deep sitting in my Benz<br />
+4 those who diss and dismiss me<br />
+Try 2 write me off and say that I’m history<br />
+Before I even start, they said I’m through bookin’<br />
+Boy, I’m like Ball Park Franks - I’m plump when I’m cookin’<br />
+CHORUS</p>
+</blockquote>
+<pre class="r"><code>dt$text &lt;- gsub(&quot;\n&quot;,&quot;  \n&quot;,dt$text)
+for (i in 1:nrow(dt)){
+  cat(paste0(&quot;# &quot;,dt$album[i],&quot;\n\n&quot;))
+  cat(paste0(&quot;## &quot;,dt$song[i],&quot;\n\n&quot;))
+  cat(paste0(&quot;&gt; &quot;,dt$text[[1]]))
+  # cat(paste0(dt$text[i]))
+  cat(&quot;\n\n&quot;)
+}</code></pre>
+</div>
+</div>
+<div id="other-songs-4" class="section level1">
+<h1>Other Songs</h1>
+<div id="hey-louie-louie-2" class="section level2">
+<h2>hey louie louie</h2>
+<blockquote>
+<p>Prince<br />
+Miscellaneous<br />
+Hey, Louie Louie<br />
+Yeah, Louie’s rap - take 1<br />
+We got a funky one<br />
+Take me out 2 the ballpark - strike 1!<br />
+Louie Louie in the house<br />
+Come on y’all, get some<br />
+I’m the designated hitter in the house<br />
+So don’t play the hold out<br />
+Tell ‘em what I’m talkin’ about<br />
+Set it up - swingin’ - strike 2!<br />
+Whole house swingin’<br />
+People s in’ - ears ringin’<br />
+With the sound that I’m throwin’ down<br />
+Strike 3 - U’re out!<br />
+Dropped it in the first round<br />
+CHORUS:<br />
+Hey, Louie Louie (Go, go, go, go, go, go Louie, go)<br />
+Aw yeah<br />
+Hey, Louie Louie (Go, go, go, go, go, go Louie, go)<br />
+Game 1 of a 7 games series<br />
+Who’s up 2 bat? L-O-U-I-E<br />
+Now freeze, can everybody hear me?<br />
+Mic check - 1 2 3 - Ahem! Cool!<br />
+Now let me resume, make room<br />
+As I zoom 2 the charts with a hype tune<br />
+Step if U wanna with the squeeze play fly<br />
+But before U know it - another R.B.I.<br />
+Yeah<br />
+CHORUS<br />
+Time 2 switch - here comes a change-up<br />
+I’m kicking it at the park with an All-star line up<br />
+Comin’ with the new gears<br />
+Sure 2 hit the kind of record these execs are sure 2 benefit from<br />
+Yo, hold up P, gimme some<br />
+Put some more kick in that bass drum - boom!<br />
+This version makes me wanna get dumb<br />
+U got me juiced and I’m lookin’ 4 the home run<br />
+Yeah<br />
+Hey Louie Louis (Go, go, go, go, go, go Louie, go)<br />
+Who’s in the house?<br />
+Hey Louie Louis (Go, go, go, go, go, go Louie, go)<br />
+Slide in with attention<br />
+I’m scoring a run, 4 which there is no prevention<br />
+Home field advantage don’t mean a thing<br />
+As long as U bring your swing with soul and feeling<br />
+Dig down deep - reach a little farther<br />
+Come correct, or don’t even bother<br />
+Sooner than later everybody will know my name<br />
+Louie Louie’s headed 4 the Hall of Fame - yeah!<br />
+CHORUS<br />
+Yo ladies, what’s the call?<br />
+Louie Louis’s in the house with the party y’all (Oh!)<br />
+Oh! Rollin’ up hard - this time flexin’<br />
+5-deep sitting in my Benz<br />
+4 those who diss and dismiss me<br />
+Try 2 write me off and say that I’m history<br />
+Before I even start, they said I’m through bookin’<br />
+Boy, I’m like Ball Park Franks - I’m plump when I’m cookin’<br />
+CHORUS</p>
+</blockquote>
+</div>
+</div>
+<div id="crystal-ball-2" class="section level1">
+<h1>Crystal Ball</h1>
+<div id="hide-the-bone-2" class="section level2">
+<h2>hide the bone</h2>
+<blockquote>
+<p>Prince<br />
+Miscellaneous<br />
+Hey, Louie Louie<br />
+Yeah, Louie’s rap - take 1<br />
+We got a funky one<br />
+Take me out 2 the ballpark - strike 1!<br />
+Louie Louie in the house<br />
+Come on y’all, get some<br />
+I’m the designated hitter in the house<br />
+So don’t play the hold out<br />
+Tell ‘em what I’m talkin’ about<br />
+Set it up - swingin’ - strike 2!<br />
+Whole house swingin’<br />
+People s in’ - ears ringin’<br />
+With the sound that I’m throwin’ down<br />
+Strike 3 - U’re out!<br />
+Dropped it in the first round<br />
+CHORUS:<br />
+Hey, Louie Louie (Go, go, go, go, go, go Louie, go)<br />
+Aw yeah<br />
+Hey, Louie Louie (Go, go, go, go, go, go Louie, go)<br />
+Game 1 of a 7 games series<br />
+Who’s up 2 bat? L-O-U-I-E<br />
+Now freeze, can everybody hear me?<br />
+Mic check - 1 2 3 - Ahem! Cool!<br />
+Now let me resume, make room<br />
+As I zoom 2 the charts with a hype tune<br />
+Step if U wanna with the squeeze play fly<br />
+But before U know it - another R.B.I.<br />
+Yeah<br />
+CHORUS<br />
+Time 2 switch - here comes a change-up<br />
+I’m kicking it at the park with an All-star line up<br />
+Comin’ with the new gears<br />
+Sure 2 hit the kind of record these execs are sure 2 benefit from<br />
+Yo, hold up P, gimme some<br />
+Put some more kick in that bass drum - boom!<br />
+This version makes me wanna get dumb<br />
+U got me juiced and I’m lookin’ 4 the home run<br />
+Yeah<br />
+Hey Louie Louis (Go, go, go, go, go, go Louie, go)<br />
+Who’s in the house?<br />
+Hey Louie Louis (Go, go, go, go, go, go Louie, go)<br />
+Slide in with attention<br />
+I’m scoring a run, 4 which there is no prevention<br />
+Home field advantage don’t mean a thing<br />
+As long as U bring your swing with soul and feeling<br />
+Dig down deep - reach a little farther<br />
+Come correct, or don’t even bother<br />
+Sooner than later everybody will know my name<br />
+Louie Louie’s headed 4 the Hall of Fame - yeah!<br />
+CHORUS<br />
+Yo ladies, what’s the call?<br />
+Louie Louis’s in the house with the party y’all (Oh!)<br />
+Oh! Rollin’ up hard - this time flexin’<br />
+5-deep sitting in my Benz<br />
+4 those who diss and dismiss me<br />
+Try 2 write me off and say that I’m history<br />
+Before I even start, they said I’m through bookin’<br />
+Boy, I’m like Ball Park Franks - I’m plump when I’m cookin’<br />
+CHORUS</p>
+</blockquote>
+</div>
+</div>
+<div id="other-songs-5" class="section level1">
+<h1>Other Songs</h1>
+<div id="high-fashion-2" class="section level2">
+<h2>high fashion</h2>
+<blockquote>
+<p>Prince<br />
+Miscellaneous<br />
+Hey, Louie Louie<br />
+Yeah, Louie’s rap - take 1<br />
+We got a funky one<br />
+Take me out 2 the ballpark - strike 1!<br />
+Louie Louie in the house<br />
+Come on y’all, get some<br />
+I’m the designated hitter in the house<br />
+So don’t play the hold out<br />
+Tell ‘em what I’m talkin’ about<br />
+Set it up - swingin’ - strike 2!<br />
+Whole house swingin’<br />
+People s in’ - ears ringin’<br />
+With the sound that I’m throwin’ down<br />
+Strike 3 - U’re out!<br />
+Dropped it in the first round<br />
+CHORUS:<br />
+Hey, Louie Louie (Go, go, go, go, go, go Louie, go)<br />
+Aw yeah<br />
+Hey, Louie Louie (Go, go, go, go, go, go Louie, go)<br />
+Game 1 of a 7 games series<br />
+Who’s up 2 bat? L-O-U-I-E<br />
+Now freeze, can everybody hear me?<br />
+Mic check - 1 2 3 - Ahem! Cool!<br />
+Now let me resume, make room<br />
+As I zoom 2 the charts with a hype tune<br />
+Step if U wanna with the squeeze play fly<br />
+But before U know it - another R.B.I.<br />
+Yeah<br />
+CHORUS<br />
+Time 2 switch - here comes a change-up<br />
+I’m kicking it at the park with an All-star line up<br />
+Comin’ with the new gears<br />
+Sure 2 hit the kind of record these execs are sure 2 benefit from<br />
+Yo, hold up P, gimme some<br />
+Put some more kick in that bass drum - boom!<br />
+This version makes me wanna get dumb<br />
+U got me juiced and I’m lookin’ 4 the home run<br />
+Yeah<br />
+Hey Louie Louis (Go, go, go, go, go, go Louie, go)<br />
+Who’s in the house?<br />
+Hey Louie Louis (Go, go, go, go, go, go Louie, go)<br />
+Slide in with attention<br />
+I’m scoring a run, 4 which there is no prevention<br />
+Home field advantage don’t mean a thing<br />
+As long as U bring your swing with soul and feeling<br />
+Dig down deep - reach a little farther<br />
+Come correct, or don’t even bother<br />
+Sooner than later everybody will know my name<br />
+Louie Louie’s headed 4 the Hall of Fame - yeah!<br />
+CHORUS<br />
+Yo ladies, what’s the call?<br />
+Louie Louis’s in the house with the party y’all (Oh!)<br />
+Oh! Rollin’ up hard - this time flexin’<br />
+5-deep sitting in my Benz<br />
+4 those who diss and dismiss me<br />
+Try 2 write me off and say that I’m history<br />
+Before I even start, they said I’m through bookin’<br />
+Boy, I’m like Ball Park Franks - I’m plump when I’m cookin’<br />
+CHORUS</p>
+</blockquote>
 </div>
 </div>
 

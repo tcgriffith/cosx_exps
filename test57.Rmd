@@ -1,0 +1,21 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+```
+
+## R Markdown
+
+
+```{r}
+mtcars <- cbind(mtcars,mtcars,mtcars,mtcars)
+
+knitr::kable(mtcars) %>%
+  kableExtra::kable_styling(latex_options = "scale_down")
+  
+```

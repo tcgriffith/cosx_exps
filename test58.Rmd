@@ -1,0 +1,45 @@
+---
+title: "Untitled"
+author: "TC"
+date: "8/17/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+
+
+library(dplyr)
+it <- data.table::fread(
+"    NAICS_2017	NAICS 2012_1	NAICS 2012_2	NAICS 2012_3	NAICS 2012_4
+    2100	2111	0	0	0
+    9110	9119	5114	0	0
+    1113	5676	4875	2186	1153
+    6220	6225	1293	0	0
+    1115	3234	2163	0	0
+    7110	7873	0	0	0
+    1100	2679	8153	2114	1145"
+)
+
+it <- mutate_all(it, as.character)
+
+matchit <- function(x){
+  tmp <- x[-1]
+  mypattern = paste0("^",stringr::str_sub(x[[1]],1,2),".*$")
+  hit <- tmp[which(grepl(mypattern, tmp))]
+  
+  return(ifelse(length(hit), hit[[1]], x[[1]]))
+}
+
+it$update <- apply(it, 1, matchit)
+it
+
+```
+
+
+

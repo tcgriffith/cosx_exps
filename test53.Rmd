@@ -1,0 +1,33 @@
+---
+title: "Untitled"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+set.seed(1)
+plot.list <- lapply(1:3,
+                    function(i) plotly::plot_ly(x=paste0(c("a", "b", "c"), ":", i), 
+                                                y=paste0(c("d", "e", "f"), ":", i), 
+                                                z=matrix(rnorm(9), 3, 3), 
+                                                type="heatmap"))
+
+plot.list2 <- c(plot.list[1],
+                "\n",
+                plot.list[2],
+                "\n",
+                plot.list[3],
+                "\n")
+```
+
+
+```{r display.plot, warning=FALSE, message=FALSE, echo=FALSE}
+# htmltools::tagList(plot.list)
+htmltools::tagList(plot.list)
+
+```
+

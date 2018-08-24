@@ -1,0 +1,55 @@
+---
+title: "Untitled"
+author: "TC"
+date: "7/27/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+<style>
+
+thead{
+  position: absolute;
+
+}
+
+
+</style>
+
+```{r}
+library(datasets)
+library(knitr)
+library(kableExtra)
+library(DT)
+
+data(iris)
+
+# with kable
+kable(iris, "html") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive"), 
+                full_width = F) %>%
+  scroll_box(width = "100%", height = "400px")
+
+# with DT
+datatable(iris, options = list("scrollY"))
+```
+
+
+```{r}
+tmp <- data.table::fread(
+"
+|      Page.Title       | Event.Label | Unique.Events |
+| Awesome Sale in Spain | pool        |           123 |
+| Spain Holidays        | pool        |            34 |
+| Edinburgh Castles     | sea-view    |            45 |
+| London Houses         | help-to-buy |            56 |
+| Cars in Greece        | beach       |            82 |
+")
+```
+
+
