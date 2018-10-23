@@ -1,0 +1,43 @@
+---
+title: "Untitled"
+author: "TC"
+date: "9/27/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r}
+##判断是否任意一个等于code
+judge2<-function(df,code){
+  df <- as.character(df)
+  if(any(df==code,na.rm = T)){
+    return(TRUE)
+  }else{
+    return(FALSE)
+  }
+}
+##带有两种类型NA值的数据框
+dt <- data.frame(x=c(1,2,3),y=c(NA,1,2),z=c("a",NA,1))
+
+dt <- apply(dt,2,as.character)
+##判断数据框dt中每一行是否包含2
+#1 for循环，判断正确
+a<-c()
+for(i in 1:nrow(dt)){
+  a[i]<-judge2(dt[i,],2)
+}
+a
+#2 apply判断错误
+apply(dt,1,judge2,2)
+#3 apply一行一行判断，判断正确
+apply(as.data.frame(dt[1,]),1,judge2,2)
+apply(as.data.frame(dt[2,]),1,judge2,2)
+apply(as.data.frame(dt[3,]),1,judge2,2)
+```
+

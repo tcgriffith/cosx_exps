@@ -1,0 +1,29 @@
+---
+title: "Untitled"
+author: "TC"
+date: "8/30/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r}
+library(RCurl)
+
+url = "http://cpc.people.com.cn/GB/64093/64094/"
+x = getBinaryURL(url, verbose=T)
+x= readBin(x,"character")
+x = iconv(x,from = "GB18030",to="UTF-8") 
+```
+
+```{r}
+tmp <- xml2::read_html(x)
+
+tmp.l <- xml2::as_list(tmp)
+```
+

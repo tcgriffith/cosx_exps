@@ -1,0 +1,44 @@
+---
+title: "Elastic-net: a Regularization and Variable Selection Method"
+date: "2018/09/30"
+warning: Internal Seminar use only
+link-citations: yes
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---
+
+# The Grouping Effect
+
+
+- Previous methods:
+    - Principle Component Analysis : Found high correlated genes.
+    - Tree-Harvesting: Select group of gene by Hierachical Clustering.
+    - ...
+    
+Regression analysis with generic penaly can be written as
+
+$$\begin{equation}\label{eq1}\hat\beta=\operatorname*{argmin}_\beta |y-X\beta|^2+\lambda J(\beta)\tag{1}\end{equation}$$
+
+---
+# The Grouping Effect
+
+
+
+#### Lemma2:
+Assume that $x_i=x_j,i,j\in\{1,...,p\}$
+
+ (a) If $J(\cdot)$ is strictly convex, then $\hat\beta_i=\hat\beta_j,\forall \lambda>0$
+
+ (b) If $J(B)=|\beta|_1$, then $\hat\beta_i\hat\beta_j\geqslant0$ and $\hat\beta^*$ is another minimizer of equation of general regression with penalty in [page 10](#3), where

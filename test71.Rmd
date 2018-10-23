@@ -1,0 +1,61 @@
+---
+title: "Untitled"
+author: "TC"
+date: "10/19/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r}
+df <- data.table::fread( 
+"Country       Var1    Var2   Var3 class  old 
+'Old country'           30      18     20  1  1    
+'Successor country 1'   5       1      1   1  0
+'Successor country 2'   10      1      0   1  0
+'Successor country 3'   15      1      3   1  0
+",
+header = TRUE,quote = "'")
+```
+
+```{r}
+
+library(dplyr)
+
+df <- data.table::fread( 
+"Country       Var1    Var2   Var3 class  old 
+'Old country'           30      18     20  1  1    
+'Successor country 1'   5       1      1   1  0
+'Successor country 2'   10      1      0   1  0
+'Successor country 3'   15      1      3   1  0
+",
+header = TRUE,quote = "'")
+
+
+splitit <- function(var, old){
+  # variable for old country
+  oldvar = var[which(old == 1)]
+  # calculate proportion
+  prop <- var
+  prop[which(old == 0)] <- var[which(old == 0)]/sum(var[which(old == 0)]) 
+  return(prop *oldvar+ var)
+}
+
+# apply function splitit to all variables starting with "Var"
+
+
+df %>%
+  group_by(class) %>%
+  mutate_at(vars(starts_with("Var")), splitit, old = .$old) %>%
+  filter (old ==0)
+
+df
+
+  
+```
+

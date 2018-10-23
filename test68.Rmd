@@ -1,0 +1,109 @@
+---
+title: "Untitled"
+author: "TC"
+date: "9/28/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+tmp <- data.table::fread(
+"Disease_name
+(J189)Pneumonia, unspecified
+(R51)Headache
+(M4806)Spinal stenosis, lumbar region
+(M512)Other specified intervertebral disc displacement
+(C187)Sigmoid colon
+(N201)Calculus of ureter
+(C189)Colon, unspecified
+(S0600)Concussion, without open intracranial wound
+(C73)Malignant neoplasm of thyroid gland
+(C509)Breast, unspecified
+(K746)Other and unspecified cirrhosis of liver
+(B181)Chronic viral hepatitis B without delta- agent
+(R42)Dizziness and giddiness",
+sep=""
+)
+
+
+tmp2 <- data.table::fread(
+"parts  key
+Chest   pneumonia
+Head    headache
+Abdominal   spinal
+Abdominal   intervertebral
+Abdominal   colon
+Abdominal   ureter
+Abdominal   colon
+Head    concussion
+Neck    thyroid
+Chest   breast
+Abdominal   liver
+Abdominal   hepatitis
+Head    giddiness"
+)
+```
+
+```{r}
+gsub(pattern = ,"",tmp$Disease_name)
+```
+
+
+```{r}
+library(tidyverse)
+
+tmp <- data.table::fread(
+"Disease_name
+(J189)Pneumonia, unspecified
+(R51)Headache
+(M4806)Spinal stenosis, lumbar region
+(M512)Other specified intervertebral disc displacement
+(C187)Sigmoid colon
+(N201)Calculus of ureter
+(C189)Colon, unspecified
+(S0600)Concussion, without open intracranial wound
+(C73)Malignant neoplasm of thyroid gland
+(C509)Breast, unspecified
+(K746)Other and unspecified cirrhosis of liver
+(B181)Chronic viral hepatitis B without delta- agent
+(R42)Dizziness and giddiness",
+sep = ""
+)
+
+
+tmp2 <- data.table::fread(
+  "parts  key
+Chest   pneumonia
+Head    headache
+Abdominal   spinal
+Abdominal   intervertebral
+Abdominal   colon
+Abdominal   ureter
+Abdominal   colon
+Head    concussion
+Neck    thyroid
+Chest   breast
+Abdominal   liver
+Abdominal   hepatitis
+Head    giddiness"
+)
+
+result <-
+  tmp %>%
+  mutate(key = gsub(paste0(".*(", paste(tmp2$key, collapse = "|"), ").*"),
+  "\\1",
+  tolower(tmp$Disease_name))) %>%
+  left_join(tmp2)
+
+
+result
+
+
+
+```
+

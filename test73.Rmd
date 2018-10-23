@@ -1,0 +1,25 @@
+---
+title: "Untitled"
+author: "TC"
+date: "10/23/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r}
+a = 0:20
+# tmp <- strptime(a, format = "%j")
+
+# lubridate::parse_date_time()
+tmp <- as.Date(a, format = "%j",origin = lubridate::origin)
+month_day <- format(tmp, format = "%m-%d")
+
+data.frame(a,month_day)
+```
+
