@@ -1,0 +1,31 @@
+---
+title: "Untitled"
+author: "TC"
+date: "12/5/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r}
+library(dplyr)
+
+df = data.table::fread("
+V1 V2
+AABBCC ABCABC
+BBCCDD DEFDEF
+DDEEFF DEFDEF
+",header = T)
+
+df.filtered = df %>%
+  filter(grepl("B|C", paste0(V1,V2)))
+
+df.filtered
+
+```
+

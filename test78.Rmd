@@ -1,0 +1,48 @@
+---
+title: "Presentation Ninja"
+subtitle: "⚔<br/>with xaringan"
+author: "Yihui Xie"
+date: "2016/12/12 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: test78.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+<style type="text/css">
+.remark-slide-content{
+  font-size: 1.5em !important;
+}
+  
+</style>
+
+
+## title 1
+
+text1
+
+text2
+
+text3
+
+---
+
+## title 2
+
+text1
+
+text2
+
+text3
+
+
+
+
