@@ -418,7 +418,7 @@ url =
 
 reps =
   sapply(tmpl, function(node) {
-    return(node %&gt;% xml_find_all(&quot;.//li&quot;)) %&gt;% length()
+    return(node %&gt;% xml_find_all(&quot;.//li&quot;) %&gt;% length())
   })
   
 
