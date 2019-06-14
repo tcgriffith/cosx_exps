@@ -1,0 +1,41 @@
+---
+title: "Only Scrolls when using Infinite moon reader"
+subtitle: "When opening html or connecting to 127.0.0.1 it does not scroll<br/><html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>"
+author: "Rainer M Krug"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      beforeInit:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      navigation:
+        scroll: false
+        click: false
+        touch: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(magrittr)
+library(DT)
+library(xaringan)
+```
+
+```{r echo=FALSE}
+data.frame(
+  a = 1:100, b = 1:100, c = 1:100, f = 1:100
+) %>%
+  datatable(
+
+
+  )
+```
+
+---
+
+```{r, echo = FALSE}
+sessionInfo()
+```

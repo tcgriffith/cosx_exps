@@ -13,3 +13,5 @@ lib*
 *sqlite
 *js
 *dat
+*_files/
+*pptx

@@ -1,0 +1,22 @@
+---
+title: "Escaping Asterisks"
+author: "Benjamin Wolfe"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+---
+
+```sql
+--like this:
+select foo.bar
+from foo;
+
+
+ -- not like this:
+ -- select bar.foo
+ -- from bar;
+
+```

@@ -1,0 +1,76 @@
+---
+title: "scrap_r_mailist"
+author: "TC"
+date: "6/14/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(xml2)
+library(dplyr)
+```
+
+## Background
+
+https://d.cosx.org/d/420739-r
+
+
+## Get all thread html
+
+use bash seems to be easier:
+
+```
+wget https://stat.ethz.ch/pipermail/r-devel/
+cat index.html |grep -o "[19|20].*thread.html"
+```
+
+## Data
+
+```{r}
+url = "https://stat.ethz.ch/pipermail/r-devel/2019-June/thread.html"
+
+dir = dirname(url)
+
+```
+
+
+## Scrape it 
+```{r}
+
+## all main thread
+tmpl = 
+  read_html(url) %>%
+  xml_find_all("//body/ul[2]/li") 
+
+title=
+  tmpl %>%
+  xml_find_first(".//a") %>%
+  xml_contents() %>%
+  as.character()
+
+url =
+  tmpl %>%
+  xml_find_first(".//a") %>% 
+  xml_attr("href") %>%
+  paste0(dir,"/",.)
+
+reps =
+  sapply(tmpl, function(node) {
+    return(node %>% xml_find_all(".//li")) %>% length()
+  })
+  
+
+df.rslt = data.frame(
+  title,
+  url,
+  reps
+)
+```
+
+```{r}
+knitr::kable(df.rslt)
+```
+
+

@@ -1,0 +1,28 @@
+---
+title: "Untitled"
+author: "TC"
+date: "3/4/2019"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
+# knitr::knit_hooks$set(error = function(x, options) {
+#   paste0("```", x, "```")
+# })
+```
+
+```{r}
+knitr::render_markdown()
+```
+
+
+```{r error=T}
+x <- c(1,2,3,4,5)
+x * 10
+X * 10
+```  

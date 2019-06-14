@@ -1,0 +1,72 @@
+---
+title: "Untitled"
+author: "TC"
+date: "1/15/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, aaaa = TRUE)
+```
+
+
+```{r}
+fun1 = function(){
+  f = function(x) {
+    sapply(x, function(x) {
+      y = numeric()
+      if (x >= 0 & x < 1)
+        y = 2
+      else if (x >= 1 & x < 2)
+        y = 0.1
+      else if (x >= 2 & x < 5)
+        y = -1
+      return(y)
+    })
+  }
+  
+  x = seq(0, 500, 0.1)
+  
+  y = f(x)
+}
+
+fun2 = function(){
+  x = seq(0, 500, 0.1)
+  y = ifelse(x > 0 & x < 1, 2, ifelse(x > 1 & x < 2, 1, ifelse(x > 2 & x < 5, -1, NA)))
+}
+
+fun3 = function(){
+  x = seq(0, 500, 0.1)
+  y <- (x > 0 & x < 1) * 2 +
+      (x > 1 & x < 2) * 1 +
+      (x > 2 & x < 5) * -1
+}
+
+microbenchmark::microbenchmark(list = c(fun1,fun2,fun3), times = 10000)
+
+```
+
+
+
+```{r}
+
+
+
+```
+
+
+```{r}
+data.l = list()
+data.l$a = matrix(rnorm(10),nrow= 5)
+data.l$b = matrix(rnorm(10),nrow= 5)
+data.l$c = matrix(rnorm(10),nrow= 5)
+
+data.l.result = lapply(data.l, function(x){
+  return(x[1,1]+x[2,1])
+})
+
+data.l.result
+
+
+```
+

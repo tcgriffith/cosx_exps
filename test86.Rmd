@@ -1,0 +1,35 @@
+---
+title: "Untitled"
+author: "TC"
+date: "12/14/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+## test
+
+
+```{r}
+# generate 10 10*10 matrix 
+a = lapply(1:10, function(d){
+  matrix(data=rnorm(100),10,10)
+})
+
+# average of 10 matrix with Reduce()
+
+a_avg = Reduce('+', a) / length(a)
+
+a_avg
+
+
+```
+
+```{r}
+
+```
+
