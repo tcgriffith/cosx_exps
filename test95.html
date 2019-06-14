@@ -385,162 +385,225 @@ $(document).ready(function () {
 <h2>Background</h2>
 <p><a href="https://d.cosx.org/d/420739-r" class="uri">https://d.cosx.org/d/420739-r</a></p>
 </div>
-<div id="get-all-thread-html" class="section level2">
-<h2>Get all thread html</h2>
-<p>use bash seems to be easier:</p>
-<pre><code>wget https://stat.ethz.ch/pipermail/r-devel/
-cat index.html |grep -o &quot;[19|20].*thread.html&quot;</code></pre>
+<div id="download-all-thread-html" class="section level2">
+<h2>Download all thread html</h2>
+<pre class="r"><code>thread.l = readLines(&quot;https://stat.ethz.ch/pipermail/r-devel/&quot;) %&gt;%
+  grep(&quot;thread.html&quot;,.,value= TRUE) %&gt;%
+  gsub(&quot;.*?([19|20].*html).*&quot;,&quot;https://stat.ethz.ch/pipermail/r-devel/\\1&quot;, .)
+
+outf = paste0(&quot;./tmp/&quot;, basename(dirname(thread.l)),&quot;.html&quot;)
+dir.create(&quot;./tmp/&quot;)</code></pre>
+<pre><code>## Warning in dir.create(&quot;./tmp/&quot;): './tmp' already exists</code></pre>
+<pre class="r"><code>for(i in 1:length(thread.l)){
+  if(!file.exists(outf[i]))
+    download_html(thread.l[i], file = outf[i])
+}</code></pre>
 </div>
 <div id="data" class="section level2">
 <h2>Data</h2>
-<pre class="r"><code>url = &quot;https://stat.ethz.ch/pipermail/r-devel/2019-June/thread.html&quot;
-
-dir = dirname(url)</code></pre>
+<pre class="r"><code>thread.l.local = list.files(&quot;./tmp/&quot;,full.names=TRUE)</code></pre>
 </div>
 <div id="scrape-it" class="section level2">
 <h2>Scrape it</h2>
-<pre class="r"><code>## all main thread
-tmpl = 
-  read_html(url) %&gt;%
-  xml_find_all(&quot;//body/ul[2]/li&quot;) 
-
-title=
-  tmpl %&gt;%
-  xml_find_first(&quot;.//a&quot;) %&gt;%
-  xml_contents() %&gt;%
-  as.character()
-
-url =
-  tmpl %&gt;%
-  xml_find_first(&quot;.//a&quot;) %&gt;% 
-  xml_attr(&quot;href&quot;) %&gt;%
-  paste0(dir,&quot;/&quot;,.)
-
-reps =
-  sapply(tmpl, function(node) {
-    return(node %&gt;% xml_find_all(&quot;.//li&quot;) %&gt;% length())
-  })
+<pre class="r"><code>scrap_thread_loc = function(file_thread) {
   
-
-df.rslt = data.frame(
-  title,
-  url,
-  reps
-)</code></pre>
-<pre class="r"><code>knitr::kable(df.rslt)</code></pre>
+  year_mon = basename(file_thread) %&gt;% gsub(&quot;.html&quot;,&quot;&quot;,.)
+  
+  dir = paste0(&quot;https://stat.ethz.ch/pipermail/r-devel/&quot;,year_mon,&quot;/&quot;)
+  tmpl =
+    read_html(file_thread) %&gt;%
+    xml_find_all(&quot;//body/ul[2]/li&quot;)
+  
+  title =
+    tmpl %&gt;%
+    xml_find_first(&quot;.//a&quot;) %&gt;%
+    xml_contents() %&gt;%
+    as.character()
+  
+  link =
+    tmpl %&gt;%
+    xml_find_first(&quot;.//a&quot;) %&gt;%
+    xml_attr(&quot;href&quot;) %&gt;%
+    paste0(dir, &quot;/&quot;, .)
+  
+  reps =
+    sapply(tmpl, function(node) {
+      return(node %&gt;% xml_find_all(&quot;.//li&quot;) %&gt;% length())
+    })
+  
+  
+  df.rslt = tibble(title,
+                       link,
+                       reps
+                       )
+  df.rslt$year_mon = year_mon
+  
+  return(df.rslt)
+}</code></pre>
+</div>
+<div id="scrape-all" class="section level2">
+<h2>scrape all</h2>
+<pre class="r"><code>all.rslt = pbapply::pblapply(thread.l.local, scrap_thread_loc)</code></pre>
+<pre class="r"><code>all.rslt.df = do.call(rbind,all.rslt)</code></pre>
+</div>
+<div id="clean" class="section level2">
+<h2>clean</h2>
+<pre class="r"><code>all.rslt.df %&gt;%
+  arrange(desc(reps)) %&gt;%
+  slice(1:10) %&gt;%
+  knitr::kable()</code></pre>
 <table>
 <thead>
 <tr class="header">
 <th align="left">title</th>
-<th align="left">url</th>
+<th align="left">link</th>
 <th align="right">reps</th>
+<th align="left">year_mon</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">[Rd] survival changes</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077904.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077904.html</a></td>
-<td align="right">7</td>
+<td align="left">[Rd] [RFC] A case for freezing CRAN</td>
+<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2014-March//068548.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2014-March//068548.html</a></td>
+<td align="right">69</td>
+<td align="left">2014-March</td>
 </tr>
 <tr class="even">
-<td align="left">[Rd] Converting non-32-bit integers from python to R to use bit64: reticulate</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077906.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077906.html</a></td>
-<td align="right">3</td>
+<td align="left">[Rd] CRAN policies</td>
+<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2012-March//063678.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2012-March//063678.html</a></td>
+<td align="right">51</td>
+<td align="left">2012-March</td>
 </tr>
 <tr class="odd">
-<td align="left">[Rd] Offer zip builds</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077921.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077921.html</a></td>
-<td align="right">16</td>
+<td align="left">[Rd] surprising behaviour of names&lt;-</td>
+<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2009-March//052522.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2009-March//052522.html</a></td>
+<td align="right">48</td>
+<td align="left">2009-March</td>
 </tr>
 <tr class="even">
-<td align="left">[Rd] rbind has confusing result for custom sub-class (possible bug?)</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077914.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077914.html</a></td>
-<td align="right">1</td>
+<td align="left">[Rd] legitimate use of :::</td>
+<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2013-August//067180.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2013-August//067180.html</a></td>
+<td align="right">44</td>
+<td align="left">2013-August</td>
 </tr>
 <tr class="odd">
-<td align="left">[Rd] rgl install for R 3.7</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077916.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077916.html</a></td>
-<td align="right">3</td>
+<td align="left">[Rd] if(–as-cran)?</td>
+<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2012-September//064760.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2012-September//064760.html</a></td>
+<td align="right">42</td>
+<td align="left">2012-September</td>
 </tr>
 <tr class="even">
-<td align="left">[Rd] Possible bug in formatC</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077923.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077923.html</a></td>
-<td align="right">0</td>
+<td align="left">[Rd] declaring package dependencies</td>
+<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2013-September//067446.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2013-September//067446.html</a></td>
+<td align="right">42</td>
+<td align="left">2013-September</td>
 </tr>
 <tr class="odd">
-<td align="left">[Rd] stopifnot</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077924.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077924.html</a></td>
-<td align="right">1</td>
+<td align="left">[Rd] Bias in R’s random integers?</td>
+<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2018-September//076817.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2018-September//076817.html</a></td>
+<td align="right">37</td>
+<td align="left">2018-September</td>
 </tr>
 <tr class="even">
-<td align="left">[Rd] Trivial error in documentation</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077928.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077928.html</a></td>
-<td align="right">1</td>
+<td align="left">[Rd] R 3.0, Rtools3.0,l Windows7 64-bit, and permission agony</td>
+<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2013-April//066388.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2013-April//066388.html</a></td>
+<td align="right">36</td>
+<td align="left">2013-April</td>
 </tr>
 <tr class="odd">
-<td align="left">[Rd] tsdiag should pass the fitdf parameter to Box.test</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077934.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077934.html</a></td>
-<td align="right">0</td>
+<td align="left">[Rd] PATCH: Add fields argument to installed.packages and available.packages</td>
+<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2006-August//042397.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2006-August//042397.html</a></td>
+<td align="right">35</td>
+<td align="left">2006-August</td>
 </tr>
 <tr class="even">
-<td align="left">[Rd] MacOS parallel::makeCluster fails</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077935.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077935.html</a></td>
-<td align="right">1</td>
+<td align="left">[Rd] Suggestion: help(&lt;package name&gt;)</td>
+<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2005-June//033480.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2005-June//033480.html</a></td>
+<td align="right">34</td>
+<td align="left">2005-June</td>
 </tr>
+</tbody>
+</table>
+</div>
+<div id="combine-threads-with-the-same-title" class="section level2">
+<h2>Combine threads with the same title</h2>
+<pre class="r"><code>all.rslt.df %&gt;%
+  group_by(title) %&gt;%
+  summarise(link =max(link), 
+            reps = sum(reps),
+            year_mon = max(year_mon)) %&gt;%
+  arrange(desc(reps)) %&gt;%
+  slice(1:10) %&gt;%
+  knitr::kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">title</th>
+<th align="left">link</th>
+<th align="right">reps</th>
+<th align="left">year_mon</th>
+</tr>
+</thead>
+<tbody>
 <tr class="odd">
-<td align="left">[Rd] undefined symbol errors when compiling package using ALTREP API</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077936.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077936.html</a></td>
-<td align="right">6</td>
+<td align="left">[Rd] [RFC] A case for freezing CRAN</td>
+<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2014-March//068548.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2014-March//068548.html</a></td>
+<td align="right">69</td>
+<td align="left">2014-March</td>
 </tr>
 <tr class="even">
-<td align="left">[Rd] foreign:::writeForeignSAS patch not released?</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077937.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077937.html</a></td>
-<td align="right">0</td>
+<td align="left">[Rd] Wish list</td>
+<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2007-January//044134.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2007-January//044134.html</a></td>
+<td align="right">62</td>
+<td align="left">2007-January</td>
 </tr>
 <tr class="odd">
-<td align="left">[Rd] [r-devel] integrate over an infinite region produces wrong results depending on scaling</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077943.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077943.html</a></td>
-<td align="right">0</td>
+<td align="left">[Rd] CRAN policies</td>
+<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2012-March//063678.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2012-March//063678.html</a></td>
+<td align="right">51</td>
+<td align="left">2012-March</td>
 </tr>
 <tr class="even">
-<td align="left">[Rd] R pkg install should fail for unsuccessful DLL copy on windows?</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077946.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077946.html</a></td>
-<td align="right">2</td>
+<td align="left">[Rd] legitimate use of :::</td>
+<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2014-May//069031.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2014-May//069031.html</a></td>
+<td align="right">48</td>
+<td align="left">2014-May</td>
 </tr>
 <tr class="odd">
-<td align="left">[Rd] Setting LC_CTYPE=en_US.UTF-8 failed</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077955.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077955.html</a></td>
-<td align="right">4</td>
+<td align="left">[Rd] NEWS.md support on CRAN</td>
+<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2015-May//071215.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2015-May//071215.html</a></td>
+<td align="right">48</td>
+<td align="left">2015-May</td>
 </tr>
 <tr class="even">
-<td align="left">[Rd] [R] Open a file which name contains a tilde</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077961.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077961.html</a></td>
-<td align="right">17</td>
+<td align="left">[Rd] surprising behaviour of names&lt;-</td>
+<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2009-March//052522.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2009-March//052522.html</a></td>
+<td align="right">48</td>
+<td align="left">2009-March</td>
 </tr>
 <tr class="odd">
-<td align="left">[Rd] Parallel number stream: clusterSetRNGStream</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077967.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077967.html</a></td>
-<td align="right">1</td>
+<td align="left">[Rd] declaring package dependencies</td>
+<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2013-September//067446.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2013-September//067446.html</a></td>
+<td align="right">42</td>
+<td align="left">2013-September</td>
 </tr>
 <tr class="even">
-<td align="left">[Rd] Give update.formula() an option not to simplify or reorder the result – request for comments</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077968.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077968.html</a></td>
-<td align="right">0</td>
+<td align="left">[Rd] if(–as-cran)?</td>
+<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2012-September//064760.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2012-September//064760.html</a></td>
+<td align="right">42</td>
+<td align="left">2012-September</td>
 </tr>
 <tr class="odd">
-<td align="left">[Rd] Determining the exit code of an “almost finished” R script</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077974.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077974.html</a></td>
-<td align="right">3</td>
+<td align="left">[Rd] Bias in R’s random integers?</td>
+<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2018-September//076817.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2018-September//076817.html</a></td>
+<td align="right">37</td>
+<td align="left">2018-September</td>
 </tr>
 <tr class="even">
-<td align="left">[Rd] Halfway through writing an “IDE” with support for R; Proof of concept, and request for suggestions.</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077978.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077978.html</a></td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">[Rd] compiler flags for performance</td>
-<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2019-June/077992.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2019-June/077992.html</a></td>
-<td align="right">1</td>
+<td align="left">[Rd] R 3.0, Rtools3.0,l Windows7 64-bit, and permission agony</td>
+<td align="left"><a href="https://stat.ethz.ch/pipermail/r-devel/2013-April//066388.html" class="uri">https://stat.ethz.ch/pipermail/r-devel/2013-April//066388.html</a></td>
+<td align="right">36</td>
+<td align="left">2013-April</td>
 </tr>
 </tbody>
 </table>
