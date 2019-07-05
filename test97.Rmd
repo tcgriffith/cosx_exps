@@ -1,0 +1,48 @@
+---
+title: "Untitled"
+author: "TC"
+date: "7/5/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache=TRUE, collapse= TRUE)
+library(ggplot2)
+library(gridExtra)
+```
+
+## R Markdown
+
+test for cache dependencies
+
+source: https://d.cosx.org/d/418610-418610
+
+
+
+
+```{r chunk1}
+# 1st time a:
+# gg1 = ggplot(mtcars, aes(x= mpg, y= cyl)) +geom_point()
+
+# 2nd time, gg1 changed
+gg1 = ggplot(mtcars, aes(x= mpg, y= cyl)) +geom_boxplot()
+
+gg2 = ggplot(mtcars, aes(x= wt, y= vs)) +geom_point()
+
+
+
+```
+
+
+### chunk2, no depends, cached what's left in 1st run
+
+```{r chunk2}
+grid.arrange(gg1,gg2)
+```
+
+### chunk3, depends on chunk1,
+
+```{r chunk3, dependson="chunk1"}
+grid.arrange(gg1,gg2)
+```
+
