@@ -1,0 +1,35 @@
+---
+title: "Untitled"
+author: "TC"
+date: "10/25/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r}
+
+available_themes=function(){
+  names(xaringan:::list_css())
+}
+
+use_theme=function(theme){
+  valid = names(xaringan:::list_css())
+  if (theme %in% valid){
+    theme_css = xaringan:::list_css()[theme]
+    htmltools::includeCSS("https://cosx.org/css/style.css")
+  }
+  else {
+    stop("theme not found: ",theme)
+  }
+}
+```
+
+
+
+

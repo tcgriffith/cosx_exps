@@ -1,0 +1,39 @@
+---
+title: "Untitled"
+author: "TC"
+date: "10/4/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r}
+url="https://d.owaraiclub.com/api/discussions?filter[q]=tag:bd"
+
+data.json = jsonlite::fromJSON(url)
+```
+
+```{r}
+# jsonlite::fromJSON(url)
+
+data.json$data$id
+data.json$data$attributes
+```
+
+
+
+```{r}
+firsturl = "https://d.cosx.org/api/discussions?filter[q]=tag:r" 
+
+cos.li = jsonlite::fromJSON(firsturl)
+```
+
+```{r}
+cos.li
+```
+

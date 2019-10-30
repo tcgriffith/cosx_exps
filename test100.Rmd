@@ -1,0 +1,39 @@
+---
+title: "Untitled"
+author: "TC"
+date: "8/28/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+https://d.cosx.org/d/420880
+
+```{r}
+library(dplyr)
+my_d <-  data.frame(
+  ID = paste('2019-', 1:10 , '-FB', sep = ''),
+  VAR = c('阿柏丁沙门氏菌','副溶血性弧菌','肠炎沙门氏菌','病牛沙门氏菌','里森沙门氏菌','阿柏丁沙门氏菌','副溶血性弧菌','肠炎沙门氏菌','病牛沙门氏菌','里森沙门氏菌')
+)
+my_d
+```
+
+
+```{r}
+library(dplyr)
+my_d <-  data.frame(
+  ID = paste('2019-', 1:10 , '-FB', sep = ''),
+  VAR = c('阿柏丁沙门氏菌','副溶血性弧菌','肠炎沙门氏菌','病牛沙门氏菌','里森沙门氏菌','阿柏丁沙门氏菌','副溶血性弧菌','肠炎沙门氏菌','病牛沙门氏菌','里森沙门氏菌')
+)
+
+my_d %>%
+  mutate(type = case_when(
+    VAR == '副溶血性弧菌' ~ '副溶血性弧菌',
+    VAR %in% c('阿柏丁沙门氏菌', '肠炎沙门氏菌', '病牛沙门氏菌', '里森沙门氏菌') ~ '沙门氏菌'
+    ))
+```
+
