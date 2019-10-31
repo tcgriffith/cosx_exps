@@ -1,0 +1,27 @@
+---
+title: "SFB1315 Result Gallery"
+subtitle: "what is the point?"
+author: " "
+institute: ""
+date: "2019-10-24 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: ["default" ]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+---
+class: middle
+
+# Objectives:
+
+- bullet 1
+
+--
+
+- bullet 2
+
+--
+
+- bullet 3
