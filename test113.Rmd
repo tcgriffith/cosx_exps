@@ -1,0 +1,47 @@
+---
+title: "Tabset Column"
+output: flexdashboard::flex_dashboard
+---
+
+Column 
+-------------------------------------
+
+### Chart 1
+
+```{r}
+library(ggplot2)
+library(plotly)
+library(dplyr)
+
+da <-data.frame(ns=rep(0:1,6), month=factor(1:12), a=letters[1:12])
+
+p <- ggplot(da) +
+geom_bar(aes(x=month,y=ns,fill=ns),stat = "identity") +
+facet_wrap(~a )+
+theme_bw(12) + ylab("CYER") +
+scale_fill_viridis_c(option="D",direction = -1) 
+
+
+p2 <- ggplot(da) +
+geom_bar(aes(x=month,y=ns,fill=ns),stat = "identity") +
+facet_wrap(~a )+
+theme_bw(12) + ylab("CYER") +
+scale_fill_viridis_c(option="C",direction = -1) 
+```
+
+Column {.tabset}
+-------------------------------------
+
+### Chart 2
+
+```{r}
+ggplotly(p2)%>%layout(
+ margin = list(b = 100, l = 100,r = 150))
+```   
+
+### Chart 3
+
+```{r}
+ggplotly(p)%>%layout(
+ margin = list(b = 100, l = 100,r = 150))
+```

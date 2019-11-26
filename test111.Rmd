@@ -1,0 +1,30 @@
+---
+title: "Simple Example" 
+output: 
+  xaringan::moon_reader
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+## Flow chart
+
+```{r example, fig.align='center', fig.retina=3}
+
+suppressPackageStartupMessages(library(widgetframe))
+
+
+l=DiagrammeR::mermaid("
+graph LR;
+A((Orange)) --> B((Grey));
+
+classDef orange fill:#f96;
+classDef grey fill:#d3d3d3;
+class A orange;
+class B grey;
+")
+
+widgetframe::frameWidget(l)
+```
