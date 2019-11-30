@@ -1,0 +1,20 @@
+---
+title: "Untitled"
+author: "TC"
+date: "11/30/2019"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+$$
+w\left(r_{i}^{k}\right)=\left\{\begin{array}{ll}{w_{i}^{k-1}\left(1-\left(r_{i}^{k} / 6 s\right)^{2}\right)^{2},} & {0<r_{i}<6 s} \\ {w_{m i n},} & {\left|r_{i}^{k}\right| \geqslant 6 s} \\ {w_{i}^{k-1},} & {-6 s<r_{i} \leqslant 0}\end{array}\right.
+$$
