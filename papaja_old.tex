@@ -1,0 +1,119 @@
+\documentclass[man, donotrepeattitle]{apa6}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={RNAcoup: A Fully Automatic Method for Evolution-Coupling Analysis of RNA},
+            pdfauthor={Tongchuan Zhang, Jaswinder Singh, \& Yaoqi Zhou},
+            pdfkeywords={RNA, Direct coupling analysis, Evolutional coupling, RFAM},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+
+  \title{\textbf{RNAcoup: A Fully Automatic Method for Evolution-Coupling Analysis of RNA}}
+    \author{Tongchuan Zhang\textsuperscript{1,*}, Jaswinder Singh\textsuperscript{2,*}, \& Yaoqi Zhou\textsuperscript{1,2}}
+    \date{}
+  
+\shorttitle{RNAcoup}
+\affiliation{
+\vspace{0.5cm}
+\textsuperscript{1} Institute for Glycomics and School of Information and Communication Technology, Griffith University, Parklands Dr. Southport, QLD 4222, Australia\\\textsuperscript{2} Signal Processing Laboratory, School of Engineering and Built Environment, Griffith University, Brisbane, QLD 4111, Australia}
+\keywords{RNA, Direct coupling analysis, Evolutional coupling, RFAM}
+\usepackage{csquotes}
+\usepackage{upgreek}
+\captionsetup{font=singlespacing,justification=justified}
+
+\usepackage{longtable}
+\usepackage{lscape}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage[flushleft]{threeparttable}
+\usepackage{threeparttablex}
+
+\newenvironment{lltable}{\begin{landscape}\begin{center}\begin{ThreePartTable}}{\end{ThreePartTable}\end{center}\end{landscape}}
+
+\makeatletter
+\newcommand\LastLTentrywidth{1em}
+\newlength\longtablewidth
+\setlength{\longtablewidth}{1in}
+\newcommand{\getlongtablewidth}{\begingroup \ifcsname LT@\roman{LT@tables}\endcsname \global\longtablewidth=0pt \renewcommand{\LT@entry}[2]{\global\advance\longtablewidth by ##2\relax\gdef\LastLTentrywidth{##2}}\@nameuse{LT@\roman{LT@tables}} \fi \endgroup}
+
+
+\DeclareDelayedFloatFlavor{ThreePartTable}{table}
+\DeclareDelayedFloatFlavor{lltable}{table}
+\DeclareDelayedFloatFlavor*{longtable}{table}
+\makeatletter
+\renewcommand{\efloat@iwrite}[1]{\immediate\expandafter\protected@write\csname efloat@post#1\endcsname{}}
+\makeatother
+
+\authornote{* Co-first author
+
+Correspondence concerning this article should be addressed to Yaoqi Zhou, Institute for Glycomics and School of Information and Communication Technology, Griffith University, Parklands Dr.~Southport, QLD 4222, Australia. E-mail: \href{mailto:yaoqi.zhou@griffith.edu.au}{\nolinkurl{yaoqi.zhou@griffith.edu.au}}}
+
+\abstract{
+Non-coding RNAs are found to perform many important biological roles we haven't anticipated before. The discovery of new RNA gene sequences far outpaces the studies on RNA structures and functions. Methods that use sequence information for aiding the RNA structure and functions are of great importance in this sequence-rich era.
+In this work, we present RNAcoup, a fully automatic method that combines RNA homolog search and evolution-coupling analysis methods. We show that the RNA homolog sequence profiles generated by RNAcoup pipeline have comparable performance to RFAM family homologs. We also show that the RNAcoup pipeline displays robust performance for RNAs with unknown RFAM families. RNAcoup should be useful for improving RNA structure modelling and functional annotations.
+
+
+}
+
+\begin{document}
+\maketitle
+
+\hypertarget{introduction}{%
+\section{INTRODUCTION}\label{introduction}}
+
+\end{document}
