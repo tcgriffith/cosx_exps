@@ -1,0 +1,35 @@
+---
+title: "Untitled"
+author: "TC"
+date: "1/7/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+mydata <- data.frame("District"=c("A district", "B district", "C district", "D district", "E district", "F district", "G district"), "Value"=c(3,4,3,6,8,4,4))
+
+```
+
+```{r}
+library(ggplot2)
+library(cowplot)
+library(dplyr)
+
+gg = mydata %>% 
+  ggplot(aes(District,Value))+
+  geom_col()+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  
+
+gg
+
+ggl = list(gg,gg,gg,gg,gg,gg)
+
+cowplot::plot_grid(plotlist=ggl, nrow=2,ncol=3)
+```
+
