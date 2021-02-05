@@ -1,0 +1,85 @@
+---
+title: "Untitled"
+author: "TC"
+date: "9/29/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+https://d.cosx.org/d/421808/2
+
+```{r}
+
+list <- rlist::list.load(
+  '{
+    "119087972": [
+      {
+        "name": "stage",
+        "value": "stage3",
+        "timestamp": 1574671029174
+      },
+      {
+        "name": "stage",
+        "value": "stage2",
+        "timestamp": 1574671020844
+      },
+      {
+        "name": "stage",
+        "value": "stage1",
+        "timestamp": 1574326025826
+      }
+    ],
+    "120479202": [
+      {
+        "name": "stage",
+        "value": "stage3",
+        "timestamp": 1574761993152
+      },
+      {
+        "name": "stage",
+        "value": "stage1",
+        "timestamp": 1574761984068
+      }
+    ]
+  }'
+)
+
+list.addid=
+lapply(1:length(list),function(i){
+  id=names(list)[i]
+
+  lapply(list[[i]], function(sublist){
+    sublist$"id"=id
+    return(sublist)
+  })
+})
+
+ list.addid %>% 
+   purrr::flatten_df()
+```
+
+```{r}
+list.2=
+lapply(1:length(list),function(i){
+  id=names(list)[i]
+  list[[i]] %>% 
+    purrr::map( ~{c(.x,id=id)})
+}) 
+
+
+list.2%>% 
+  purrr::flatten_df()
+
+```
+
+```{r}
+list %>% 
+  purrr::walk()
+```
+
+
+

@@ -1,0 +1,27 @@
+---
+title: "Untitled"
+author: "TC"
+date: "11/21/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+url="https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history?host_uid=6358514"
+```
+
+```{r}
+tmp=
+jsonlite::fromJSON(url, simplifyVector=FALSE)
+```
+
+```{r}
+jsonlite::fromJSON(tmp$data$cards[[2]]$card)
+```
+
+

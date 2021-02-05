@@ -1,0 +1,20 @@
+---
+title: "hide"
+output: html_document
+---
+
+```{r, echo = TRUE, eval=FALSE}
+for (i in 1:10) {
+  print(sample(1:2, 1))
+}
+```
+
+```{r, echo = FALSE, eval=TRUE}
+for (i in 1:10) {
+  set.seed(i)
+  print(sample(1:2, 1))
+}
+```
+
+
+
